@@ -131,3 +131,8 @@
 .menu-coffee {
     color: #265171;
 }
+.line-stike {
+    text-decoration: line-through;
+    float: right;
+    color: #bababa;
+}

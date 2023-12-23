@@ -69,6 +69,7 @@
     </section>
     <p class="text " style="background-color: #004A62" text-color=""> </p>
 
+    <!-- Menu -->
     <div class="container" id="coffee">
         <h2 class="promo-heading mt-4">Premium Taste</h2>
         <div class="row" style="margin-top: 30px;">
