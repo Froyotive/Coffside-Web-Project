@@ -37,7 +37,7 @@
                         <a class="nav-link" href="#">Promo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Menu</a>
+                        <a class="nav-link" href="{{ url('menu') }}">Menu</a>
                     </li>
                 </ul>
             </div>
@@ -49,6 +49,12 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{ asset('images/banner-1.png') }}" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('images/banner-2.png') }}" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('images/banner-3.png') }}" class="d-block w-100" alt="Slide 3">
             </div>
             <!-- Add more slides as needed -->
         </div>
@@ -87,19 +93,20 @@
                 </div>
             </div>
         </div>
-        <h2 class="promo-heading mt-4">Our Menu</h2>
+        <h2 class="promo-heading mt-4">Featured Product</h2>
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
                 <div class="row g-0 mb-4">
                     <div class="col">
                         <div class="card shadow-sm" style="width: 18rem;">
-                            <img src="{{ asset('images/menu/Americano.png') }}" class="bd-placeholder-img card-img-top"
-                                width="100%" height="100%" aria-label="Americano">
+                            <img src="{{ asset('images/menu/saltedcaramellatte.png') }}"
+                                class="bd-placeholder-img card-img-top" width="100%" height="100%"
+                                aria-label="Americano">
                             <div class="card-body">
-                                <p class="card-text" style="color: #265171;">Americano</p>
+                                <p class="card-text" style="color: #265171;">Salted Caramel Latte</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <p>Rp 10.000</p>
+                                        <p>Rp 19.000</p>
                                     </div>
                                 </div>
                             </div>
@@ -123,14 +130,14 @@
 
                     <div class="col">
                         <div class="card shadow-sm" style="width: 18rem;">
-                            <img src="{{ asset('images/menu/butterscotch.png') }}"
+                            <img src="{{ asset('images/menu/caramellatte.png') }}"
                                 class="bd-placeholder-img card-img-top" width="100%" height="100%"
                                 aria-label="Butter Scotch">
                             <div class="card-body">
-                                <p class="card-text" style="color: #265171;">Butter Scotch</p>
+                                <p class="card-text" style="color: #265171;">Caramel Latte</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <p>Rp 15.000</p>
+                                        <p>Rp 13.000</p>
                                     </div>
                                 </div>
                             </div>
@@ -139,13 +146,14 @@
 
                     <div class="col">
                         <div class="card shadow-sm" style="width: 18rem;">
-                            <img src="{{ asset('images/menu/caffelatte.png') }}" class="bd-placeholder-img card-img-top"
-                                width="100%" height="100%" aria-label="Caffe Latte">
+                            <img src="{{ asset('images/menu/creamycoffee.png') }}"
+                                class="bd-placeholder-img card-img-top" width="100%" height="100%"
+                                aria-label="Caffe Latte">
                             <div class="card-body">
-                                <p class="card-text" style="color: #265171;">Caffe Latte</p>
+                                <p class="card-text" style="color: #265171;">Creamy Coffee</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <p>Rp 13.000</p>
+                                        <p>Rp 15.000</p>
                                     </div>
                                 </div>
                             </div>
@@ -157,27 +165,11 @@
                     <div class="row g-0">
                         <div class="col">
                             <div class="card shadow-sm" style="width: 18rem;">
-                                <img src="{{ asset('images/menu/caramellatte.png') }}"
+                                <img src="{{ asset('images/menu/oceanblue.png') }}"
                                     class="bd-placeholder-img card-img-top" width="100%" height="100%"
                                     aria-label="Caramel Latte">
                                 <div class="card-body">
-                                    <p class="card-text" style="color: #265171;">Caramel Latte</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <p>Rp 13.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card shadow-sm" style="width: 18rem;">
-                                <img src="{{ asset('images/menu/creamycoffee.png') }}"
-                                    class="bd-placeholder-img card-img-top" width="100%" height="100%"
-                                    aria-label="Creamy Coffee">
-                                <div class="card-body">
-                                    <p class="card-text" style="color: #265171;">Creamy Coffee</p>
+                                    <p class="card-text" style="color: #265171;">Ocean Blue</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <p>Rp 15.000</p>
@@ -193,7 +185,7 @@
                                     class="bd-placeholder-img card-img-top" width="100%" height="100%"
                                     aria-label="Creamy Coffee">
                                 <div class="card-body">
-                                    <p class="card-text" style="color: #265171;">Ice Cream Sandiwch</p>
+                                    <p class="card-text" style="color: #265171;">Ice Cream Sandwich</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <p>Rp 15.000</p>
@@ -203,87 +195,6 @@
                             </div>
                         </div>
 
-
-
-                        <div class="col">
-                            <div class="card shadow-sm" style="width: 18rem;">
-                                <img src="{{ asset('images/menu/milkysquash.png') }}"
-                                    class="bd-placeholder-img card-img-top" width="100%" height="100%"
-                                    aria-label="Creamy Coffee">
-                                <div class="card-body">
-                                    <p class="card-text" style="color: #265171;">Milky Squash</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <p>Rp 14.000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row g-0 mb-4">
-                    <div class="col">
-                        <div class="card shadow-sm" style="width: 18rem;">
-                            <img src="{{ asset('images/menu/oceanblue.png') }}" class="bd-placeholder-img card-img-top"
-                                width="100%" height="100%" aria-label="Creamy Coffee">
-                            <div class="card-body">
-                                <p class="card-text" style="color: #265171;">Ocean Blue</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <p>Rp 16.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card shadow-sm" style="width: 18rem;">
-                            <img src="{{ asset('images/menu/saltedcaramellatte.png') }}"
-                                class="bd-placeholder-img card-img-top" width="100%" height="100%"
-                                aria-label="Creamy Coffee">
-                            <div class="card-body">
-                                <p class="card-text" style="color: #265171;">Salted Caramel Latte</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <p>Rp 18.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card shadow-sm" style="width: 18rem;">
-                            <img src="{{ asset('images/menu/vanila-latte.png') }}"
-                                class="bd-placeholder-img card-img-top" width="100%" height="100%"
-                                aria-label="Creamy Coffee">
-                            <div class="card-body">
-                                <p class="card-text" style="color: #265171;">Vanilla Latte</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <p>Rp 10.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card shadow-sm" style="width: 18rem;">
-                            <img src="{{ asset('images/menu/veganlatte.png') }}" class="bd-placeholder-img card-img-top"
-                                width="100%" height="100%" aria-label="Creamy Coffee">
-                            <div class="card-body">
-                                <p class="card-text" style="color: #265171;">Vegan Latte</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <p>Rp 14.000</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,6 @@
 }
 .promo-heading {
     margin-top: 6rem;
-    margin-left: 360px;
 }
 .bd-placeholder-img {
     font-size: 1.125rem;
@@ -84,6 +83,7 @@
     color: #265171;
     font-family: "Open Sans", sans-serif;
     font-weight: 700;
+    font-size: 16px; /* Sesuaikan ukuran font sesuai kebutuhan Anda */
 }
 
 .album .d-flex {
@@ -97,6 +97,7 @@
     font-family: "Open Sans", sans-serif;
     font-weight: 500;
     margin: 0;
+    font-size: 14px; /* Sesuaikan ukuran font sesuai kebutuhan Anda */
 }
 
 .album .d-flex p1:last-child {
@@ -121,4 +122,12 @@
 
 .checked {
     color: orange;
+}
+
+.coffee {
+    margin-top: 100px;
+    font-family: "Roboto Slab", serif;
+}
+.menu-coffee {
+    color: #265171;
 }
