@@ -39,6 +39,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('menu') }}">Menu</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('login') }}">Login</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -90,7 +93,7 @@
                         <div class="card-body">
                             <h3 class="menu-coffee">Salted Caramel Latte</h3>
                             <h5 class="menu-coffee">Rp 19.000 <span></span></h5>
-                            <h6 class="menu-coffee">Stock : 16</h6>
+                            <!-- <h6 class="menu-coffee">Stock : 16</h6> -->
                         </div>
                     </div>
                 </div>
@@ -100,7 +103,7 @@
                         <div class="card-body">
                             <h3 class="menu-coffee">Aren Latte</h3>
                             <h5 class="menu-coffee">Rp 9.000 <span></span></h5>
-                            <h6 class="menu-coffee">Stock : 12</h6>
+                            <!-- <h6 class="menu-coffee">Stock : 12</h6> -->
                         </div>
                     </div>
                 </div>
@@ -110,7 +113,7 @@
                         <div class="card-body">
                             <h3 class="menu-coffee">Caramell Latte</h3>
                             <h5 class="menu-coffee">Rp 13.000 <span></span></h5>
-                            <h6 class="menu-coffee">Stock : 6</h6>
+                            <!-- <h6 class="menu-coffee">Stock : 6</h6> -->
                         </div>
                     </div>
                 </div>
@@ -120,7 +123,7 @@
                         <div class="card-body">
                             <h3 class="menu-coffee">Creamy Coffee</h3>
                             <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <h6 class="menu-coffee">Stock : 11</h6>
+                            <!-- <h6 class="menu-coffee">Stock : 11</h6> -->
                         </div>
                     </div>
                 </div>
@@ -130,7 +133,7 @@
                         <div class="card-body">
                             <h3 class="menu-coffee">Ocean Blue</h3>
                             <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <h6 class="menu-coffee">Stock : 11</h6>
+                            <!-- <h6 class="menu-coffee">Stock : 11</h6> -->
                         </div>
                     </div>
                 </div>
@@ -140,7 +143,7 @@
                         <div class="card-body">
                             <h3 class="menu-coffee">Ice Cream Sandwich</h3>
                             <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <h6 class="menu-coffee">Stock : 2</h6>
+                            <!-- <h6 class="menu-coffee">Stock : 2</h6> -->
                         </div>
                     </div>
                 </div>
