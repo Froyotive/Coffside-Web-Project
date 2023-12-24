@@ -47,7 +47,7 @@
         </div>
     </nav>
 
-    <img src="{{ asset('images/banner-1.png') }}" class="d-block w-100">
+    <img src="{{ asset('images/banner-2.png') }}" class="d-block w-100">
 
     <div class="container">
         <h2 class="promo-heading mt-4">Coffside #Donation</h2>

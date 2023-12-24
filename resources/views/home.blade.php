@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('promo') }}">Promo</a>
@@ -51,15 +51,20 @@
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('images/banner-1.png') }}" class="d-block w-100" alt="Slide 1">
+                <a href="{{ url('banner-1') }}">
+                    <img src="{{ asset('images/banner-1.png') }}" class="d-block w-100" alt="Slide 1">
+                </a>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/banner-2.png') }}" class="d-block w-100" alt="Slide 2">
+                <a href="{{ url('banner-2') }}">
+                    <img src="{{ asset('images/banner-2.png') }}" class="d-block w-100" alt="Slide 2">
+                </a>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('images/banner-3.png') }}" class="d-block w-100" alt="Slide 3">
+                <a href="{{ url('banner-3') }}">
+                    <img src="{{ asset('images/banner-3.png') }}" class="d-block w-100" alt="Slide 3">
+                </a>
             </div>
-            <!-- Add more slides as needed -->
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

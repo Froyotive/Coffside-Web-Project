@@ -9,6 +9,7 @@
 }
 .promo-heading {
     margin-top: 6rem;
+    color: #265171;
 }
 .bd-placeholder-img {
     font-size: 1.125rem;
@@ -135,4 +136,8 @@
     text-decoration: line-through;
     float: right;
     color: #bababa;
+}
+
+.banner-text {
+    color: #265171;
 }
