@@ -36,10 +36,10 @@
                         <a class="nav-link" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Promo</a>
+                        <a class="nav-link" href="{{ url('promo') }}">Promo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Menu</a>
+                        <a class="nav-link active" href="{{ url('menu') }}">Menu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('login') }}">Login</a>
