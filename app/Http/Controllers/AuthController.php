@@ -40,46 +40,51 @@ class AuthController extends Controller
     }
   
     public function loginAction(Request $request)
-    {
-        Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
-        ])->validate();
-  
-        if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
-            throw ValidationException::withMessages([
-                'email' => trans('auth.failed')
-            ]);
-        }
-  
+{
+    Validator::make($request->all(), [
+        'email' => 'required|email',
+        'password' => 'required'
+    ])->validate();
+
+    if (Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
         $user = Auth::user();
 
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        } elseif ($user->role === 'customer') {
-            return redirect()->route('customer.dashboard');
+        if ($user) {
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role === 'customer') {
+                return redirect()->route('customer.dashboard');
+            }
         }
-    
-        // Default redirect
+
+        // Default redirect if user or role is not available
         return redirect()->route('dashboard');
     }
+
+    // If authentication fails
+    throw ValidationException::withMessages([
+        'email' => trans('auth.failed')
+    ]);
+}
   
-    public function logout(Request $request)
+public function logout(Request $request)
 {
-    Auth::guard('web')->logout();
+    // Check if the user is authenticated
+    if (Auth::check()) {
+        $user = Auth::user();
 
-    $request->session()->invalidate();
-
-    $user = Auth::user();
-
-    if ($user->role === 'admin') {
-        return redirect('/admin/login');
-    } elseif ($user->role === 'customer') {
-        return redirect('/customer/login');
+        if ($user) {
+            if ($user->role === 'admin') {
+                return redirect('/');
+            } elseif ($user->role === 'customer') {
+                return redirect('/');
+            }
+        }
     }
 
-    // Default redirect
+    // Default redirect if user is not authenticated or role is not available
     return redirect('/');
 }
+
 
 }
