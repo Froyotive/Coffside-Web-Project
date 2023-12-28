@@ -57,8 +57,15 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
- 
+    Route::prefix('admin')->middleware('role:admin')->group(function () {
+        Route::get('dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+    });
+
+    Route::prefix('customer')->middleware('role:customer')->group(function () {
+        Route::get('dashboard', function () {
+            return view('customer.dashboard');
+        })->name('customer.dashboard');
+    });
 });

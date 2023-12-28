@@ -28,7 +28,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 'Admin'
+            'role' => 'customer',
         ]);
   
         return redirect()->route('login');
@@ -52,22 +52,34 @@ class AuthController extends Controller
             ]);
         }
   
-        $request->session()->regenerate();
-  
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->role === 'customer') {
+            return redirect()->route('customer.dashboard');
+        }
+    
+        // Default redirect
         return redirect()->route('dashboard');
     }
   
     public function logout(Request $request)
-    {
-        Auth::guard('web')->logout();
-  
-        $request->session()->invalidate();
-  
-        return redirect('/');
+{
+    Auth::guard('web')->logout();
+
+    $request->session()->invalidate();
+
+    $user = Auth::user();
+
+    if ($user->role === 'admin') {
+        return redirect('/admin/login');
+    } elseif ($user->role === 'customer') {
+        return redirect('/customer/login');
     }
- 
-    public function profile()
-    {
-        return view('profile');
-    }
+
+    // Default redirect
+    return redirect('/');
+}
+
 }
