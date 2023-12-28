@@ -2,63 +2,98 @@
 
 namespace App\Http\Controllers;
 
+// app/Http/Controllers/MenuController.php
+
+use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $menus = Menu::all();
+        return view('menus.index', compact('menus'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('menus.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama_menu' => 'required',
+            'kategori_menu' => 'required',
+            'gambar_menu' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'harga_menu' => 'required|numeric',
+        ]);
+
+        $menu = new Menu();
+        $menu->nama_menu = $request->input('nama_menu');
+        $menu->kategori_menu = $request->input('kategori_menu');
+
+        // Upload gambar_menu
+        $gambar_menu = $request->file('gambar_menu');
+        $gambar_menu_path = $gambar_menu->storeAs('images/menu', $gambar_menu->getClientOriginalName(), 'public');
+        $menu->gambar_menu = $gambar_menu_path;
+
+        $menu->harga_menu = $request->input('harga_menu');
+        $menu->save();
+
+        return redirect()->route('menus.index')->with('success', 'Menu berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $menu = Menu::find($id);
+        return view('menus.show', compact('menu'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $menu = Menu::find($id);
+        return view('menus.edit', compact('menu'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nama_menu' => 'required',
+            'kategori_menu' => 'required',
+            'harga_menu' => 'required|numeric',
+        ]);
+
+        $menu = Menu::find($id);
+        $menu->nama_menu = $request->input('nama_menu');
+        $menu->kategori_menu = $request->input('kategori_menu');
+
+        if ($request->hasFile('gambar_menu')) {
+            // Hapus gambar lama jika ada
+            Storage::disk('public')->delete($menu->gambar_menu);
+
+            // Upload gambar_menu yang baru
+            $gambar_menu = $request->file('gambar_menu');
+            $gambar_menu_path = $gambar_menu->storeAs('images/menu', $gambar_menu->getClientOriginalName(), 'public');
+            $menu->gambar_menu = $gambar_menu_path;
+        }
+
+        $menu->harga_menu = $request->input('harga_menu');
+        $menu->save();
+
+        return redirect()->route('menus.index')->with('success', 'Menu berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $menu = Menu::find($id);
+
+        // Hapus gambar dari storage
+        Storage::disk('public')->delete($menu->gambar_menu);
+
+        $menu->delete();
+
+        return redirect()->route('menus.index')->with('success', 'Menu berhasil dihapus');
     }
 }

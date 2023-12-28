@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,6 +63,7 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
+        
     });
 
     Route::prefix('customer')->middleware('role:customer')->group(function () {
@@ -69,3 +72,6 @@ Route::middleware('auth')->group(function () {
         })->name('customer.dashboard');
     });
 });
+
+Route::resource('menus', MenuController::class);
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
