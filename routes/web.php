@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PromoController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,3 +78,8 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('menus', MenuController::class);
 Route::resource('promos', PromoController::class);
+Route::resource('stocks', StockController::class);
+Route::get('/customer/show', [CustomerController::class, 'showCustomer'])->name('customer.showCustomer');
+Route::get('/users/{user}', [UserController::class, 'showCustomer'])
+    ->name('users.show_customer')
+    ->middleware(['auth', 'role:admin']);

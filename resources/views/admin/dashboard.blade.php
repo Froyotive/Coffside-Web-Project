@@ -40,6 +40,11 @@
                         <a class="nav-link" href="{{ url('menu') }}">Menu</a>
                     </li>
                     @auth
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center">
+                            <a href="{{ route('show.customer') }}" class="btn btn-primary">Show Customer Profile</a>
+                        </div>
+                    </div>
                     <li class="nav-item">
                         <span class="nav-link">Welcome, {{ Auth::user()->name }}</span>
                     </li>
