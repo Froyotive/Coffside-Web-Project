@@ -46,7 +46,7 @@
                         <img src="{{ asset($menu->gambar_menu) }}" alt="{{ $menu->nama_menu }}"
                             style="max-width: 100px;">
                     </td>
-                    <td>{{ $menu->harga_menu }}</td>
+                    <td>{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}</td>
                     <td>
                         <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('menus.destroy', $menu->id) }}" method="POST" style="display: inline;">

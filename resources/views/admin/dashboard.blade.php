@@ -40,17 +40,15 @@
                         <a class="nav-link" href="{{ url('menu') }}">Menu</a>
                     </li>
                     @auth
-                    <div class="row mt-4">
-                        <div class="col-md-12 text-center">
-                            <a href="{{ route('show.customer') }}" class="btn btn-primary">Show Customer Profile</a>
-                        </div>
-                    </div>
                     <li class="nav-item">
                         <span class="nav-link">Welcome, {{ Auth::user()->name }}</span>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                     </li>
+                    <div class="container">
+                        <a href="{{ url('/customer/redirect') }}" class="btn btn-primary mt-3">Go to Custom Page</a>
+                    </div>
                     @endauth
                 </ul>
             </div>
