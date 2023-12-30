@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\PromoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,4 +74,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('menus', MenuController::class);
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::resource('promos', PromoController::class);
