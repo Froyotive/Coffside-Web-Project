@@ -12,7 +12,7 @@ class StockController extends Controller
 {
     public function index()
     {
-        $stocks = Stock::with('menu')->latest()->paginate(5);
+        $stocks = Stock::simplePaginate(5);
         return view('stocks.index', compact('stocks'));
     }
 

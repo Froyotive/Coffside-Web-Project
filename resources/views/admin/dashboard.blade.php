@@ -1,243 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <title>Coffside Web</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('admin_assets2/css/style.css') }}" />
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ecede8;">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/logo-1.png') }}" alt="Coffside Logo" width="80" height="40">
-
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+    <div class="wrapper">
+        <aside id="sidebar" class="js-sidebar">
+            <!-- Content For Sidebar -->
+            <div class="h-100">
+                <div class="sidebar-logo">
+                    <a href="#">Coffside Admin Dashboard</a>
+                </div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">Navigation Sidebar</li>
+                    <li class="sidebar-item">
+                        <a href="{{url('admin/dashboard')}}" class="sidebar-link">
+                            <i class="fa-solid fa-list pe-2"></i>
+                            Dashboard
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('promo') }}">Promo</a>
+                    <li class="sidebar-item">
+                        <a href="{{url('menus')}}" class="sidebar-link active">
+                            <i class="fa-solid fa-hamburger pe-2"></i>
+                            Menu
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('menu') }}">Menu</a>
+                    <li class="sidebar-item">
+                        <a href="{{url('stocks')}}" class="sidebar-link">
+                            <i class="fa-solid fa-archive pe-2"></i>
+                            Stock
+                        </a>
                     </li>
-                    @auth
-                    <li class="nav-item">
-                        <span class="nav-link">Welcome, {{ Auth::user()->name }}</span>
+                    <li class="sidebar-item">
+                        <a href="{{url('promos')}}" class="sidebar-link">
+                            <i class="fa-solid fa-poll pe-2"></i>
+                            Promo
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                    <li class="sidebar-item">
+                        <a href="{{url('users')}}" class="sidebar-link">
+                            <i class="fa-solid fa-user pe-2"></i>
+                            Users
+                        </a>
                     </li>
-                    <div class="container">
-                        <a href="{{ url('/customer/redirect') }}" class="btn btn-primary mt-3">Go to Custom Page</a>
-                    </div>
-                    @endauth
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="fa-solid fa-comment-dollar pe-2"></i>
+                            Pemesanan
+                        </a>
+                    </li>
                 </ul>
             </div>
-        </div>
-    </nav>
-
-    <!-- Carousel -->
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <a href="{{ url('banner-1') }}">
-                    <img src="{{ asset('images/banner-1.png') }}" class="d-block w-100" alt="Slide 1">
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="{{ url('banner-2') }}">
-                    <img src="{{ asset('images/banner-2.png') }}" class="d-block w-100" alt="Slide 2">
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="{{ url('banner-3') }}">
-                    <img src="{{ asset('images/banner-3.png') }}" class="d-block w-100" alt="Slide 3">
-                </a>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-    <!-- Menu -->
-    <div class="container" id="coffee">
-        <h2 class="promo-heading mt-4">Todays Promo</h2>
-        <div class="row" style="margin-top: 30px;">
-            <div class="col-md-3 py-0 py-md-0">
-                <div class="card border-0">
-                    <img src="{{ asset('images/menu/vanila-latte.png') }}" alt="">
-                    <div class="card-body">
-                        <h3 class="menu-coffee">Vanilla Latte</h3>
-                        <h5 class="menu-coffee">Rp 10.000 <span class="line-stike">Rp 13.000 </span></h5>
-
-                    </div>
-                </div>
-            </div>
-            <h2 class="promo-heading mt-4">Featured Products</h2>
-            <div class="row" style="margin-top: 30px;">
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/saltedcaramellatte.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Salted Caramel Latte</h3>
-                            <h5 class="menu-coffee">Rp 19.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 16</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/aren-latte.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Aren Latte</h3>
-                            <h5 class="menu-coffee">Rp 9.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 12</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/caramellatte.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Caramell Latte</h3>
-                            <h5 class="menu-coffee">Rp 13.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 6</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/creamycoffee.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Creamy Coffee</h3>
-                            <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 11</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/oceanblue.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Ocean Blue</h3>
-                            <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 11</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/icecreamsandwich.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Ice Cream Sandwich</h3>
-                            <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 2</h6> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h2 class="promo-heading mt-4">What They Say About Us</h2>
-            <div class="container">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <!-- Testimonial Card 1 -->
-                    <div class="col">
-                        <div class="card testimonial-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Jeon Wonwoo</h5>
-                                <div class="rating">
-                                    <!-- Bintang Rating -->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <p class="card-text">"Coffside emang tempat ternyaman buat nongkrong sama temen. Rasa
-                                    kopinya
-                                    pas banget di lidah dan pelayanannya juara!"</p>
+        </aside>
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <button class="btn" id="sidebar-toggle" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="{{ asset('images/profile.jpg') }}" class="avatar img-fluid rounded" alt="" />
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="#" class="dropdown-item">Logout</a>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial Card 2 -->
-                    <div class="col">
-                        <div class="card testimonial-card">
-                            <div class="card-body">
-                                <h5 class="card-title">Maudy Ayudya</h5>
-                                <div class="rating">
-                                    <!-- Bintang Rating -->
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                </div>
-                                <p class="card-text">"Dateng ke sini buat nyobain es krim karambol yang viral banget di
-                                    sosmed
-                                    dan ternyata beneran enak banget loh. Highly Recommended pokoknya"</p>
-                            </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-    <footer style="background-color: #265171; color: #ffffff; padding: 20px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h4>COFFSIDE</h4>
-                    <p>Our Location</p>
-                    <p>Kantin Vokasi UI, Kukusam Kecamatan Beji, Kota Depok, Jawa Barat 16245</p>
-                    <a href="https://www.instagram.com/coffside.id/" target="_blank">
-                        <img src="{{ asset('images/logo/instagram-logo.png') }}" alt="Instagram" width="30" height="30">
-                    </a>
-                    <a href="https://www.tiktok.com/@coffside.id" target="_blank">
-                        <img src="{{ asset('images/logo/tiktok-logo.png') }}" alt="TikTok" width="30" height="30">
-                    </a>
-                </div>
-                <div class="col-md-8">
+            </nav>
+            <main class="content px-3 py-2">
+                <div class="container-fluid">
+                    <div class="mb-3">
+                        <h4>Admin Dashboard</h4>
+                    </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-12 col-md-6 d-flex">
+                            <div class="card flex-fill border-0 illustration">
+                                <div class="card-body p-0 d-flex flex-fill">
+                                    <div class="row g-0 w-100">
+                                        <div class="col-6">
+                                            <div class="p-3 m-1">
+                                                <h4>Welcome Back, {{ Auth::user()->name }}</h4>
+                                                <p class="mb-0">Admin Dashboard, CodzSword</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 align-self-end text-end">
+                                            <img src="image/customer-support.jpg" class="img-fluid illustration-img"
+                                                alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-12 col-md-6 d-flex">
+                            <div class="card flex-fill border-0">
+                                <div class="card-body py-4">
+                                    <div class="d-flex align-items-start">
+                                        <div class="flex-grow-1">
+                                            <h4 class="mb-2">$ 78.00</h4>
+                                            <p class="mb-2">Total Earnings</p>
+                                            <div class="mb-0">
+                                                <span class="badge text-success me-2"> +9.0% </span>
+                                                <span class="text-muted"> Since Last Month </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Table Element -->
+                </div>
+            </main>
+            <a href="#" class="theme-toggle">
+                <i class="fa-regular fa-moon"></i>
+                <i class="fa-regular fa-sun"></i>
+            </a>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-6 text-start">
+                            <p class="mb-0">
+                                <a href="#" class="text-muted">
+                                    <strong>Coffside</strong>
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
+            </footer>
         </div>
-    </footer>
-
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('admin_assets2/js/script.js')}}"></script>
+</body>
 
 </html>
