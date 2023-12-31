@@ -105,7 +105,10 @@
                             <input type="number" class="form-control" id="quantity" name="quantity"
                                 value="{{ $stock->quantity }}" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+                        </div>
                     </form>
 
                 </div>

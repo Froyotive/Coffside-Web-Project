@@ -34,8 +34,9 @@
             <input type="number" step="0.01" class="form-control" id="nilai_potongan" name="nilai_potongan"
                 value="{{ old('nilai_potongan', $promo->nilai_potongan ?? '') }}" required>
         </div><br>
-
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="{{ route('promos.index') }}" class="btn btn-secondary">Batal</a>
+        <div class="d-flex justify-content-between mt-3">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <a href="{{ route('promos.index') }}" class="btn btn-secondary">Kembali</a>
+        </div>
     </form>
 </div>
