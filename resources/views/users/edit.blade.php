@@ -112,8 +112,10 @@
                                     <option value="admin" @if($user->role == 'admin') selected @endif>Admin</option>
                                 </select>
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Update User</button>
+                            <div class="d-flex justify-content-between mt-3">
+                                <button type="submit" class="btn btn-primary">Update User</button>
+                                <a href="{{ route('users.index') }}" class="btn btn-secondary">Kembali</a>
+                            </div>
                         </form>
                     </div>
                 </div>
