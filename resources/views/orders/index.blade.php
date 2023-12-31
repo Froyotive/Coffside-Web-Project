@@ -80,67 +80,54 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="container mt-4">
-                        <h2>Daftar Menu</h2>
-
-                        <div class="mb-5 text-end">
-                            <a href="{{ route('menus.create') }}" class="btn btn-success ">Tambah Menu</a>
-                        </div>
-
-                        @if(session('success'))
-                        <div class="alert alert-success">
+                    <div class="container mt-5">
+                        <h2>Data Pemesanan</h2>
+                        @if (session('success'))
+                        <div class="alert alert-success mt-3">
                             {{ session('success') }}
                         </div>
                         @endif
-
-
-                        <table class="table">
+                        <div class="mb-5 text-end">
+                            <a href="{{ route('orders.create') }}" class="btn btn-success">Tambah Data Pemesanan</a>
+                        </div>
+                        <table class="table mt-4">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Menu</th>
-                                    <th>Kategori</th>
-                                    <th>Gambar</th>
-                                    <th>Harga</th>
-                                    <th>Aksi</th>
+                                    <th>ID</th>
+                                    <th>Menu</th>
+                                    <th>Promo</th>
+                                    <th>User</th>
+                                    <th>Quantity</th>
+                                    <th>Total Price</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($menus as $menu)
+                                @foreach($orders as $order)
                                 <tr>
-                                    <td>{{ $menu->id }}</td>
-                                    <td>{{ $menu->nama_menu }}</td>
-                                    <td>{{ $menu->kategori_menu }}</td>
+                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $order->menu->nama_menu }}</td>
+                                    <td>{{ $order->promo ? $order->promo->nama_promo : 'N/A' }}</td>
+                                    <td>{{ $order->user->name }}</td>
+                                    <td>{{ $order->quantity }}</td>
+                                    <td>{{ 'Rp ' . number_format($order->total_price, 0, ',', '.') }}</td>
                                     <td>
-                                        <img src="{{ asset($menu->gambar_menu) }}" alt="{{ $menu->nama_menu }}"
-                                            style="max-width: 100px;">
-                                    </td>
-                                    <td>{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}</td>
-                                    <td>
-                                        <a href="{{ route('menus.edit', $menu->id) }}" class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('menus.destroy', $menu->id) }}" method="POST"
+                                        <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info">Show</a>
+                                        <a href="{{ route('orders.edit', $order->id) }}"
+                                            class="btn btn-warning">Edit</a>
+                                        <form action="{{ route('orders.destroy', $order->id) }}" method="post"
                                             style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
+                                                onclick="return confirm('Are you sure you want to delete this order?')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="mt-3">
-                            @if($menus->previousPageUrl())
-                            <a href="{{ $menus->previousPageUrl() }}" class="btn btn-primary">Previous</a>
-                            @endif
-
-                            @if($menus->nextPageUrl())
-                            <a href="{{ $menus->nextPageUrl() }}" class="btn btn-primary">Next</a>
-                            @endif
-                        </div>
                     </div>
-                    <!-- Table Element -->
                 </div>
             </main>
             <a href="#" class="theme-toggle">
