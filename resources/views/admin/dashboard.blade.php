@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{url('orders')}}" class="sidebar-link">
                             <i class="fa-solid fa-comment-dollar pe-2"></i>
                             Pemesanan
                         </a>
@@ -72,7 +72,7 @@
                                 <img src="{{ asset('images/profile.jpg') }}" class="avatar img-fluid rounded" alt="" />
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Logout</a>
+                                <a href="{{ route('logout') }}" class="dropdown-item">Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -91,7 +91,6 @@
                                         <div class="col-6">
                                             <div class="p-3 m-1">
                                                 <h4>Welcome Back, {{ Auth::user()->name }}</h4>
-                                                <p class="mb-0">Admin Dashboard, CodzSword</p>
                                             </div>
                                         </div>
                                         <div class="col-6 align-self-end text-end">
@@ -102,22 +101,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 d-flex">
-                            <div class="card flex-fill border-0">
-                                <div class="card-body py-4">
-                                    <div class="d-flex align-items-start">
-                                        <div class="flex-grow-1">
-                                            <h4 class="mb-2">$ 78.00</h4>
-                                            <p class="mb-2">Total Earnings</p>
-                                            <div class="mb-0">
-                                                <span class="badge text-success me-2"> +9.0% </span>
-                                                <span class="text-muted"> Since Last Month </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Assuming you have a variable $totalEarnings available in your Blade view -->
+
                     </div>
                     <!-- Table Element -->
                 </div>

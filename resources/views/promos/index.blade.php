@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{url('orders')}}" class="sidebar-link">
                             <i class="fa-solid fa-comment-dollar pe-2"></i>
                             Pemesanan
                         </a>
@@ -72,7 +72,7 @@
                                 <img src="{{ asset('images/profile.jpg') }}" class="avatar img-fluid rounded" alt="" />
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Logout</a>
+                                <a href="{{ route('logout') }}" class="dropdown-item">Logout</a>
                             </div>
                         </li>
                     </ul>

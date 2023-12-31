@@ -6,7 +6,8 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UserController;
-/*
+use App\Http\Controllers\OrderController;
+/*  
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -79,3 +80,5 @@ Route::resource('menus', MenuController::class);
 Route::resource('promos', PromoController::class);
 Route::resource('stocks', StockController::class);
 Route::resource('users', UserController::class);
+// Index
+Route::resource('orders', OrderController::class);

@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
-    public function stocks()
-        {
-            return $this->hasMany(Stock::class);
-        }
+
+    protected $fillable = ['nama_menu', 'kategori_menu', 'gambar_menu', 'harga_menu', 'stock_id'];
+
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class);
+    }
 }

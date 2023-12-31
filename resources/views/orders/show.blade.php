@@ -80,56 +80,38 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="container mt-4">
-                        <h2>Daftar Stocks</h2>
-                        <div class="mb-5 text-end">
-                            <a href="{{ route('stocks.create') }}" class="btn btn-success">Tambah Stock</a>
-                        </div>
-
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Menu</th>
-                                    <th>Gambar</th>
-                                    <th>Jumlah Stock</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
+                    <div class="container mt-5">
+                        <h2>Show Order</h2>
+                        <table class="table mt-4">
                             <tbody>
-                                @foreach ($stocks as $stock)
                                 <tr>
-                                    <td>{{ $stock->id }}</td>
-                                    <td>
-                                        <strong>{{ $stock->menu->nama_menu }}</strong><br>
-                                    </td>
-                                    <td>
-                                        <img src="{{ asset($stock->menu->gambar_menu) }}"
-                                            alt="{{ $stock->menu->nama_menu }}" style="max-width: 100px;">
-                                    </td>
-                                    <td>{{ $stock->quantity }}</td>
-                                    <td>
-                                        <a href="{{ route('stocks.edit', $stock->id) }}"
-                                            class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST"
-                                            style="display:inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                        </form>
-                                    </td>
+                                    <td>ID:</td>
+                                    <td>{{ $order->id }}</td>
                                 </tr>
-                                @endforeach
+                                <tr>
+                                    <td>Menu:</td>
+                                    <td>{{ $order->menu->nama_menu }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Promo:</td>
+                                    <td>{{ $order->promo ? $order->promo->nama_promo : 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>User:</td>
+                                    <td>{{ $order->user->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Quantity:</td>
+                                    <td>{{ $order->quantity }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Price:</td>
+                                    <td>{{ $order->total_price }}</td>
+                                </tr>
                             </tbody>
                         </table>
-                        <div class="mt-3">
-                            @if($stocks->previousPageUrl())
-                            <a href="{{ $stocks->previousPageUrl() }}" class="btn btn-primary">Previous</a>
-                            @endif
-
-                            @if($stocks->nextPageUrl())
-                            <a href="{{ $stocks->nextPageUrl() }}" class="btn btn-primary">Next</a>
-                            @endif
+                        <div class="text-end">
+                            <a href="{{ route('orders.index') }}" class="btn btn-primary     mt-3">Back</a>
                         </div>
                     </div>
                 </div>

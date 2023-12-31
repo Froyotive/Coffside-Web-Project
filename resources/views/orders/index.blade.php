@@ -80,57 +80,53 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="container mt-4">
-                        <h2>Daftar Stocks</h2>
-                        <div class="mb-5 text-end">
-                            <a href="{{ route('stocks.create') }}" class="btn btn-success">Tambah Stock</a>
+                    <div class="container mt-5">
+                        <h2>Data Pemesanan</h2>
+                        @if (session('success'))
+                        <div class="alert alert-success mt-3">
+                            {{ session('success') }}
                         </div>
-
-                        <table class="table">
+                        @endif
+                        <div class="mb-5 text-end">
+                            <a href="{{ route('orders.create') }}" class="btn btn-success">Tambah Data Pemesanan</a>
+                        </div>
+                        <table class="table mt-4">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Menu</th>
-                                    <th>Gambar</th>
-                                    <th>Jumlah Stock</th>
-                                    <th>Aksi</th>
+                                    <th>ID</th>
+                                    <th>Menu</th>
+                                    <th>Promo</th>
+                                    <th>User</th>
+                                    <th>Quantity</th>
+                                    <th>Total Price</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($stocks as $stock)
+                                @foreach($orders as $order)
                                 <tr>
-                                    <td>{{ $stock->id }}</td>
+                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $order->menu->nama_menu }}</td>
+                                    <td>{{ $order->promo ? $order->promo->nama_promo : 'N/A' }}</td>
+                                    <td>{{ $order->user->name }}</td>
+                                    <td>{{ $order->quantity }}</td>
+                                    <td>{{ 'Rp ' . number_format($order->total_price, 0, ',', '.') }}</td>
                                     <td>
-                                        <strong>{{ $stock->menu->nama_menu }}</strong><br>
-                                    </td>
-                                    <td>
-                                        <img src="{{ asset($stock->menu->gambar_menu) }}"
-                                            alt="{{ $stock->menu->nama_menu }}" style="max-width: 100px;">
-                                    </td>
-                                    <td>{{ $stock->quantity }}</td>
-                                    <td>
-                                        <a href="{{ route('stocks.edit', $stock->id) }}"
+                                        <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info">Show</a>
+                                        <a href="{{ route('orders.edit', $order->id) }}"
                                             class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST"
-                                            style="display:inline">
+                                        <form action="{{ route('orders.destroy', $order->id) }}" method="post"
+                                            style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete this order?')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="mt-3">
-                            @if($stocks->previousPageUrl())
-                            <a href="{{ $stocks->previousPageUrl() }}" class="btn btn-primary">Previous</a>
-                            @endif
-
-                            @if($stocks->nextPageUrl())
-                            <a href="{{ $stocks->nextPageUrl() }}" class="btn btn-primary">Next</a>
-                            @endif
-                        </div>
                     </div>
                 </div>
             </main>

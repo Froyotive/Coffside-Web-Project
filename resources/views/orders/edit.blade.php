@@ -79,59 +79,51 @@
                 </div>
             </nav>
             <main class="content px-3 py-2">
-                <div class="container-fluid">
-                    <div class="container mt-4">
-                        <h2>Daftar Stocks</h2>
-                        <div class="mb-5 text-end">
-                            <a href="{{ route('stocks.create') }}" class="btn btn-success">Tambah Stock</a>
-                        </div>
-
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Menu</th>
-                                    <th>Gambar</th>
-                                    <th>Jumlah Stock</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($stocks as $stock)
-                                <tr>
-                                    <td>{{ $stock->id }}</td>
-                                    <td>
-                                        <strong>{{ $stock->menu->nama_menu }}</strong><br>
-                                    </td>
-                                    <td>
-                                        <img src="{{ asset($stock->menu->gambar_menu) }}"
-                                            alt="{{ $stock->menu->nama_menu }}" style="max-width: 100px;">
-                                    </td>
-                                    <td>{{ $stock->quantity }}</td>
-                                    <td>
-                                        <a href="{{ route('stocks.edit', $stock->id) }}"
-                                            class="btn btn-warning">Edit</a>
-                                        <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST"
-                                            style="display:inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                <div class="container mt-5">
+                    <h2>Edit Order</h2>
+                    <form action="{{ route('orders.update', $order->id) }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group"><br>
+                            <label for="menu_id">Menu:</label>
+                            <select name="menu_id" id="menu_id" class="form-control">
+                                @foreach($menus as $menu)
+                                <option value="{{ $menu->id }}" {{ $menu->id === $order->menu_id ? 'selected' : '' }}>
+                                    {{ $menu->nama_menu }}
+                                </option>
                                 @endforeach
-                            </tbody>
-                        </table>
-                        <div class="mt-3">
-                            @if($stocks->previousPageUrl())
-                            <a href="{{ $stocks->previousPageUrl() }}" class="btn btn-primary">Previous</a>
-                            @endif
-
-                            @if($stocks->nextPageUrl())
-                            <a href="{{ $stocks->nextPageUrl() }}" class="btn btn-primary">Next</a>
-                            @endif
+                            </select>
                         </div>
-                    </div>
+                        <div class="form-group"><br>
+                            <label for="promo_id">Promo:</label>
+                            <select name="promo_id" id="promo_id" class="form-control">
+                                <option value="" {{ $order->promo_id === null ? 'selected' : '' }}>No Promo</option>
+                                @foreach($promos as $promo)
+                                <option value="{{ $promo->id }}"
+                                    {{ $promo->id === $order->promo_id ? 'selected' : '' }}>
+                                    {{ $promo->nama_promo }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group"><br>
+                            <label for="user_id">User:</label>
+                            <select name="user_id" id="user_id" class="form-control">
+                                @foreach($customers as $customer)
+                                <option value="{{ $customer->id }}"
+                                    {{ $customer->id === $order->user_id ? 'selected' : '' }}>
+                                    {{ $customer->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group"><br>
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" name="quantity" id="quantity" class="form-control"
+                                value="{{ $order->quantity }}" required>
+                        </div><br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </main>
             <a href="#" class="theme-toggle">
