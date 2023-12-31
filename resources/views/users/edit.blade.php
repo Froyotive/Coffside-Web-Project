@@ -99,12 +99,6 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password:</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                                <!-- You may want to add validation here -->
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="role" class="form-label">Role:</label>
                                 <select class="form-select" id="role" name="role">
                                     <option value="customer" @if($user->role == 'customer') selected @endif>Customer
@@ -113,7 +107,14 @@
                                 </select>
                             </div>
 
+<<<<<<< Updated upstream
                             <button type="submit" class="btn btn-primary">Update User</button>
+=======
+                            <div class="d-flex justify-content-between mt-3">
+                                <button type="submit" class="btn btn-primary">Update User</button>
+                                <a href="{{ route('users.index') }}" class="btn btn-secondary">Kembali</a>
+                            </div>
+>>>>>>> Stashed changes
                         </form>
                     </div>
                 </div>
