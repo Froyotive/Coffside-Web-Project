@@ -112,12 +112,14 @@
                                         <a href="{{ route('stocks.edit', $stock->id) }}"
                                             class="btn btn-warning">Edit</a>
                                         <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST"
-                                            style="display:inline">
+                                            style="display:inline"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus stok ini?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Hapus</button>
                                         </form>
                                     </td>
+
                                 </tr>
                                 @endforeach
                             </tbody>
