@@ -41,7 +41,7 @@
                     </li>
                     @auth
                     <li class="nav-item">
-                        <span class="nav-link">Welcome, {{ Auth::user()->name }}</span>
+                        <span class="nav-link">{{ Auth::user()->name }}</span>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Logout</a>
