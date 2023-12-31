@@ -122,7 +122,10 @@
                             <input type="number" name="quantity" id="quantity" class="form-control"
                                 value="{{ $order->quantity }}" required>
                         </div><br>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="{{ route('users.index') }}" class="btn btn-secondary">Kembali</a>
+                        </div>
                     </form>
                 </div>
             </main>

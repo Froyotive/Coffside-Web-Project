@@ -115,7 +115,10 @@
                             <input type="number" class="form-control" id="harga_menu" name="harga_menu"
                                 value="{{ $menu->harga_menu }}" required>
                         </div><br>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+                        </div>
                     </form>
                 </div>
             </main>

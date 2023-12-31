@@ -107,14 +107,7 @@
                                 </select>
                             </div>
 
-<<<<<<< Updated upstream
                             <button type="submit" class="btn btn-primary">Update User</button>
-=======
-                            <div class="d-flex justify-content-between mt-3">
-                                <button type="submit" class="btn btn-primary">Update User</button>
-                                <a href="{{ route('users.index') }}" class="btn btn-secondary">Kembali</a>
-                            </div>
->>>>>>> Stashed changes
                         </form>
                     </div>
                 </div>
