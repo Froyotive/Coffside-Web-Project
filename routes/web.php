@@ -80,5 +80,4 @@ Route::resource('menus', MenuController::class);
 Route::resource('promos', PromoController::class);
 Route::resource('stocks', StockController::class);
 Route::resource('users', UserController::class);
-// Index
 Route::resource('orders', OrderController::class);
