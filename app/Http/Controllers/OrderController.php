@@ -41,7 +41,7 @@ class OrderController extends Controller
 
         $order = new Order([
             'quantity' => $request->input('quantity'),
-            'total_price' => ($menu->harga_menu - ($promo ? $promo->nilai_potongan : 0)) * $request->input('quantity'),
+            'total_price' => (($menu->harga_menu * $request->input('quantity')) - ($menu->harga_menu * ($promo ? $promo->nilai_potongan : 0))),
         ]);
 
         $order->menu()->associate($menu);
