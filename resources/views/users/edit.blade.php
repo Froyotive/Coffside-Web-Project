@@ -98,14 +98,6 @@
                                     value="{{ $user->email }}" required>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="role" class="form-label">Role:</label>
-                                <select class="form-select" id="role" name="role">
-                                    <option value="customer" @if($user->role == 'customer') selected @endif>Customer
-                                    </option>
-                                    <option value="admin" @if($user->role == 'admin') selected @endif>Admin</option>
-                                </select>
-                            </div>
 
                             <button type="submit" class="btn btn-primary">Update User</button>
                         </form>
