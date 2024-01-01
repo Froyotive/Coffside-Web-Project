@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap Admin Dashboard</title>
+    <title>Coffside Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('admin_assets2/css/style.css') }}" />
@@ -80,6 +80,7 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
+
                     <div class="mb-3">
                         <h4>Admin Dashboard</h4>
                     </div>
@@ -104,9 +105,12 @@
                             </div><br>
                             <div class="form-group">
                                 <label for="kategori_menu">Kategori Menu:</label>
-                                <input type="text" class="form-control" id="kategori_menu" name="kategori_menu"
-                                    required>
-                            </div>
+                                <select class="form-control" id="kategori_menu" name="kategori_menu" required>
+                                    <option value="Coffee">Coffee</option>
+                                    <option value="Non-Coffee">Non-Coffee</option>
+                                    <option value="Food">Food</option>
+                                </select>
+                            </div><br>
                             <br>
                             <div class="form-group">
                                 <label for="gambar_menu">Gambar Menu:</label><br>

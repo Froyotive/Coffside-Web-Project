@@ -2,98 +2,93 @@
 
 namespace App\Http\Controllers;
 
-// app/Http/Controllers/MenuController.php
-
-use App\Models\Menu;
+use App\Models\Promo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class MenuController extends Controller
+class PromoController extends Controller
 {
     public function index()
     {
-        $menus = Menu::simplePaginate(5);
-        return view('menus.index', compact('menus'));
+        $promos = Promo::all();
+        return view('promos.index', compact('promos'));
     }
 
     public function create()
     {
-        return view('menus.create');
+        $promo = new Promo();
+        return view('promos.create', compact('promo'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nama_menu' => 'required',
-            'kategori_menu' => 'required',
-            'gambar_menu' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'harga_menu' => 'required|numeric',
+        $request->validate([
+            'nama_promo' => 'required|string',
+            'gambar_promo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'deskripsi_promo' => 'required|string',
+            'nilai_potongan' => 'required|numeric',
         ]);
 
-        $menu = new Menu();
-        $menu->nama_menu = $request->input('nama_menu');
-        $menu->kategori_menu = $request->input('kategori_menu');
+        $promo = new Promo();
+        $promo->nama_promo = $request->input('nama_promo');
+        $promo->deskripsi_promo = $request->input('deskripsi_promo');
+        $promo->nilai_potongan = $request->input('nilai_potongan');
 
-        // Upload gambar_menu
-        $gambar_menu = $request->file('gambar_menu');
-        $gambar_menu_path = $gambar_menu->storeAs('images/menu', $gambar_menu->getClientOriginalName(), 'public');
-        $menu->gambar_menu = $gambar_menu_path;
+        // Upload gambar_promo dengan nama asli file
+        $gambar_promo = $request->file('gambar_promo');
+        $nama_file = $gambar_promo->getClientOriginalName();
+        $gambar_promo_path = $gambar_promo->storeAs('images/promo', $nama_file, 'public');
+        $promo->gambar_promo = $gambar_promo_path;
 
-        $menu->harga_menu = $request->input('harga_menu');
-        $menu->save();
+        $promo->save();
 
-        return redirect()->route('menus.index')->with('success', 'Menu berhasil ditambahkan');
-    }
-
-    public function show($id)
-    {
-        $menu = Menu::find($id);
-        return view('menus.show', compact('menu'));
+        return redirect()->route('promos.index')->with('success', 'Promo berhasil ditambahkan');
     }
 
     public function edit($id)
     {
-        $menu = Menu::find($id);
-        return view('menus.edit', compact('menu'));
+        $promo = Promo::findOrFail($id);
+        return view('promos.edit', compact('promo'));
     }
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'nama_menu' => 'required',
-            'kategori_menu' => 'required',
-            'harga_menu' => 'required|numeric',
+        $promo = Promo::findOrFail($id);
+
+        $request->validate([
+            'nama_promo' => 'required|string',
+            'deskripsi_promo' => 'required|string',
+            'nilai_potongan' => 'required|numeric',
         ]);
 
-        $menu = Menu::find($id);
-        $menu->nama_menu = $request->input('nama_menu');
-        $menu->kategori_menu = $request->input('kategori_menu');
+        if ($request->hasFile('gambar_promo')) {
+            Storage::disk('public')->delete($promo->gambar_promo);
 
-        if ($request->hasFile('gambar_menu')) {
-            // Hapus gambar lama jika ada
-            Storage::disk('public')->delete($menu->gambar_menu);
-
-            // Upload gambar_menu yang baru
-            $gambar_menu = $request->file('gambar_menu');
-            $gambar_menu_path = $gambar_menu->storeAs('images/menu', $gambar_menu->getClientOriginalName(), 'public');
-            $menu->gambar_menu = $gambar_menu_path;
+            $gambar_promo = $request->file('gambar_promo');
+            $nama_file = $gambar_promo->getClientOriginalName();
+            $gambar_promo_path = $gambar_promo->storeAs('images/promo', $nama_file, 'public');
+            $promo->gambar_promo = $gambar_promo_path;
         }
 
-        $menu->harga_menu = $request->input('harga_menu');
-        $menu->save();
+        $promo->nama_promo = $request->input('nama_promo');
+        $promo->deskripsi_promo = $request->input('deskripsi_promo');
+        $promo->nilai_potongan = $request->input('nilai_potongan');
 
-        return redirect()->route('menus.index')->with('success', 'Menu berhasil diperbarui');
+        $promo->save();
+
+        return redirect()->route('promos.index')->with('success', 'Promo berhasil diperbarui');
     }
+
 
     public function destroy($id)
     {
-        $menu = Menu::find($id);
+        $promo = Promo::findOrFail($id);
 
-        // Hapus gambar dari storage
-        Storage::disk('public')->delete($menu->gambar_menu);
+        // Hapus gambar_promo dari storage
+        Storage::disk('public')->delete($promo->gambar_promo);
 
-        $menu->delete();
+        $promo->delete();
 
-        return redirect()->route('menus.index')->with('success', 'Menu berhasil dihapus');
+        return redirect()->route('promos.index')->with('success', 'Promo berhasil dihapus');
     }
 }

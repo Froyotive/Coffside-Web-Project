@@ -39,6 +39,14 @@ class OrderController extends Controller
         $promo = Promo::find($request->input('promo_id'));
         $user = User::find($request->input('user_id'));
 
+        // Attempt to load the Stock model directly
+        $stock = Stock::where('menu_id', $menu->id)->first();
+
+        if (!$stock || $stock->quantity < $request->input('quantity')) {
+            // If stock is not found or insufficient, return with an error message
+            return redirect()->back()->with('error', 'Stock habis atau tidak mencukupi untuk pesanan ini');
+        }
+
         $order = new Order([
             'quantity' => $request->input('quantity'),
             'total_price' => (($menu->harga_menu * $request->input('quantity')) - ($menu->harga_menu * ($promo ? $promo->nilai_potongan : 0))),
@@ -49,20 +57,14 @@ class OrderController extends Controller
         $order->user()->associate($user);
         $order->save();
 
-        // Attempt to load the Stock model directly
-        $stock = Stock::where('menu_id', $menu->id)->first();
-
-        if ($stock) {
-            // Update stock
-            $stock->quantity -= $request->input('quantity');
-            $stock->save();
-        } else {
-            // Handle the case where the stock is not found
-            // You might need to create a stock entry or handle it according to your logic
-        }
+        // Update stock
+        $stock->quantity -= $request->input('quantity');
+        $stock->save();
 
         return redirect()->route('orders.index')->with('success', 'Order berhasil ditambahkan');
     }
+
+
 
     public function show(Order $order)
     {

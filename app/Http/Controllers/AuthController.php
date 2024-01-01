@@ -67,24 +67,15 @@ class AuthController extends Controller
     ]);
 }
   
-public function logout(Request $request)
-{
-    // Check if the user is authenticated
-    if (Auth::check()) {
-        $user = Auth::user();
+// AuthController.php
 
-        if ($user) {
-            if ($user->role === 'admin') {
-                return redirect('/');
-            } elseif ($user->role === 'customer') {
-                return redirect('/');
-            }
-        }
+public function logout()
+    {
+        auth()->logout();
+
+        return redirect()->route('login');
     }
 
-    // Default redirect if user is not authenticated or role is not available
-    return redirect('/');
-}
 
 
 }

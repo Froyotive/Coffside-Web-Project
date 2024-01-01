@@ -71,6 +71,10 @@
                                     <div class="text-center">
                                         <a class="small" href="{{ route('register') }}">Create an Account!</a>
                                     </div>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="{{ url('/') }}">Back To Home</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
