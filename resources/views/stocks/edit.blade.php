@@ -79,7 +79,7 @@
                 </div>
             </nav>
             <main class="content px-3 py-2">
-                <div class="container mt-5">
+                <div class="container mt-5 card card-body">
                     <h2>Edit Stock</h2>
                     @if ($errors->any())
                     <div class="alert alert-danger">

@@ -79,7 +79,7 @@
                 </div>
             </nav>
             <main class="content px-3 py-2">
-                <div class="container mt-5">
+                <div class="container mt-5 card card-body">
                     <h2>Edit Order</h2>
                     <form action="{{ route('orders.update', $order->id) }}" method="post">
                         @csrf
@@ -124,7 +124,7 @@
                         </div><br>
                         <div class="d-flex justify-content-between mt-3">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="{{ route('users.index') }}" class="btn btn-secondary">Kembali</a>
+                            <a href="{{ route('orders.index') }}" class="btn btn-secondary">Kembali</a>
                         </div>
                     </form>
                 </div>

@@ -80,7 +80,7 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="container mt-5">
+                    <div class="container mt-5 card card-body">
                         <h2>Data Pemesanan</h2>
                         @if (session('success'))
                         <div class="alert alert-success mt-3">

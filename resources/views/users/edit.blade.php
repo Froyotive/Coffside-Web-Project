@@ -80,7 +80,7 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container mt-5">
-                    <div class="container mt-5">
+                    <div class="container mt-5 card card-body">
                         <h1>Edit User</h1>
 
                         <form action="{{ route('users.update', $user->id) }}" method="POST">

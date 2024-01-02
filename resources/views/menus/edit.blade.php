@@ -79,7 +79,7 @@
                 </div>
             </nav>
             <main class="content px-3 py-2">
-                <div class="container mt-4">
+                <div class="container mt-4 card card-body">
                     <h2>Edit Menu</h2>
 
                     @if ($errors->any())

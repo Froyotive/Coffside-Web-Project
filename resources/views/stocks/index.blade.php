@@ -80,7 +80,7 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="container mt-4">
+                    <div class="container mt-4 card card-body">
                         <h2>Daftar Stocks</h2>
                         <div class="mb-5 text-end">
                             <a href="{{ route('stocks.create') }}" class="btn btn-success">Tambah Stock</a>

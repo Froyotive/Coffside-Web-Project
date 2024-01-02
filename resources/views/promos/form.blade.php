@@ -1,6 +1,6 @@
 <!-- resources/views/promos/form.blade.php -->
 
-<div class="container mt-4">
+<div class="container mt-4 card card-body">
     <h2>{{ $title }}</h2>
 
     <form action="{{ $route }}" method="POST" enctype="multipart/form-data">
