@@ -39,11 +39,11 @@ class OrderController extends Controller
         $promo = Promo::find($request->input('promo_id'));
         $user = User::find($request->input('user_id'));
 
-        // Attempt to load the Stock model directly
+
         $stock = Stock::where('menu_id', $menu->id)->first();
 
         if (!$stock || $stock->quantity < $request->input('quantity')) {
-            // If stock is not found or insufficient, return with an error message
+
             return redirect()->back()->with('error', 'Stock habis atau tidak mencukupi untuk pesanan ini');
         }
 
@@ -57,7 +57,7 @@ class OrderController extends Controller
         $order->user()->associate($user);
         $order->save();
 
-        // Update stock
+
         $stock->quantity -= $request->input('quantity');
         $stock->save();
 
@@ -97,22 +97,21 @@ class OrderController extends Controller
         $order->promo()->associate($promo);
         $order->user()->associate($user);
 
-        // Update total_price based on the updated quantity and applicable promo
+
         $order->quantity = $request->input('quantity');
         $order->total_price = (($menu->harga_menu * $request->input('quantity')) - ($menu->harga_menu * ($promo ? $promo->nilai_potongan : 0)));
 
         $order->save();
 
-        // Attempt to load the Stock model directly
+
         $stock = Stock::where('menu_id', $menu->id)->first();
 
         if ($stock) {
-            // Update stock
+
             $stock->quantity -= $request->input('quantity');
             $stock->save();
         } else {
-            // Handle the case where the stock is not found
-            // You might need to create a stock entry or handle it according to your logic
+            
         }
 
         return redirect()->route('orders.index')->with('success', 'Order berhasil diupdate');
@@ -121,23 +120,22 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
-        // Get the associated menu and quantity
+        
         $menu = $order->menu;
         $quantity = $order->quantity;
 
-        // Restore the stock
+        
         $stock = Stock::where('menu_id', $menu->id)->first();
 
         if ($stock) {
-            // Update stock quantity by adding back the ordered quantity
+            
             $stock->quantity += $quantity;
             $stock->save();
         } else {
-            // Handle the case where the stock is not found
-            // You might need to create a stock entry or handle it according to your logic
+            
         }
 
-        // Delete the order
+        
         $order->delete();
 
         return redirect()->route('orders.index')->with('success', 'Order berhasil dihapus dan stok dikembalikan');

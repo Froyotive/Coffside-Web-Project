@@ -95,10 +95,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $user)
+                                @foreach($users as $index => $user)
                                 @if($user->role === 'customer')
                                 <tr>
-                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>

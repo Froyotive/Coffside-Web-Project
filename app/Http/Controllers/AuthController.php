@@ -57,17 +57,16 @@ class AuthController extends Controller
             }
         }
 
-        // Default redirect if user or role is not available
+ 
         return redirect()->route('dashboard');
     }
 
-    // If authentication fails
+
     throw ValidationException::withMessages([
         'email' => trans('auth.failed')
     ]);
 }
   
-// AuthController.php
 
 public function logout()
     {

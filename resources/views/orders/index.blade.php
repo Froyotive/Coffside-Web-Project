@@ -96,10 +96,10 @@
                                     <th>No</th>
                                     <th>Menu</th>
                                     <th>Promo</th>
-                                    <th>User</th>
-                                    <th>Quantity</th>
-                                    <th>Total Price</th>
-                                    <th>Actions</th>
+                                    <th>Nama Pemesan</th>
+                                    <th>Jumlah</th>
+                                    <th>Total Harga</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -82,7 +82,7 @@
                 <div class="container-fluid">
                     <div class="container mt-5">
                         <h2>Show Order</h2>
-                        <table class="table mt-4">
+                        <table class="table table-bordered mt-4">
                             <tbody>
                                 <tr>
                                     <td>ID:</td>

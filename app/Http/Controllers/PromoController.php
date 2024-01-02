@@ -29,7 +29,7 @@ class PromoController extends Controller
         ]);
 
         $gambar_promo = $request->file('gambar_promo');
-        $nama_file = time() . '_' . $gambar_promo->getClientOriginalName();
+        $nama_file = $gambar_promo->getClientOriginalName();
         $gambar_path = $gambar_promo->storeAs('images/promo', $nama_file, 'public');
 
         Promo::create([
