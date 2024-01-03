@@ -34,10 +34,10 @@
                         <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('promo') }}">Promo</a>
+                        <a class="nav-link" href="{{ url('promo_customer') }}">Promo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('menu1') }}">Menu</a>
+                        <a class="nav-link" href="{{ url('menu_customer') }}">Menu</a>
                     </li>
                     @auth
                     <li class="nav-item">
@@ -51,6 +51,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- Carousel -->
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">

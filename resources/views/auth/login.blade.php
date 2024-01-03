@@ -87,7 +87,6 @@
                                 <button name="login" id="login" class="btn btn-block login-btn mb-4"
                                     type="submit">Login</button>
                             </form>
-                            <p href="#!" class="forgot-password-link text-end">Forgot password?</p>
                             <p class="login-card-footer-text text-center">Don't have an account? <a
                                     href="{{ url('register') }}" class="text-reset">Register here</a></p>
                         </div>

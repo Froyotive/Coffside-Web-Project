@@ -89,4 +89,11 @@ class PromoController extends Controller
         return view('landing_page.promo', compact('promos'));
     }
 
+    public function landingPageCustomer()
+    {
+        $promos = Promo::all();
+
+        return view('customer.promo', compact('promos'));
+    }
+
 }

@@ -23,7 +23,9 @@ Route::get('/', function () {
 });
 
 Route::get('/menu', [MenuController::class, 'landingPage']); 
-Route::get('/promo', [PromoController::class, 'landingPage']); 
+Route::get('/promo', [PromoController::class, 'landingPage']);
+Route::get('/menu_customer', [MenuController::class, 'landingPageCustomer']); 
+Route::get('/promo_customer', [PromoController::class, 'landingPageCustomer']);  
 
 
 Route::get('/login', function () {
@@ -76,6 +78,6 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard', function () {
             return view('customer.dashboard');
         })->name('customer.dashboard');
-        
     });
+        
 });

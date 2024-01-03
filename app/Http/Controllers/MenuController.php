@@ -105,4 +105,11 @@ class MenuController extends Controller
 
         return view('landing_page.menu', compact('menus','stocks'));
     }
+    public function landingPageCustomer()
+    {
+        $menus = Menu::all();
+        $stocks = Stock::all();
+
+        return view('customer.menu', compact('menus','stocks'));
+    }
 }
