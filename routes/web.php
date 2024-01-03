@@ -19,13 +19,14 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('landing_page.home');
 });
 
+Route::get('/menu', [MenuController::class, 'landingPage']); 
+Route::get('/promo', [PromoController::class, 'landingPage']);
+Route::get('/menu_customer', [MenuController::class, 'landingPageCustomer']); 
+Route::get('/promo_customer', [PromoController::class, 'landingPageCustomer']);  
 
-Route::get('/menu', function () {
-    return view('menu');
-});
 
 Route::get('/login', function () {
     return view('login');
@@ -35,9 +36,6 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/promo', function () {
-    return view('promo');
-});
 
 Route::get('/banner-1', function (){
     return view('banner.banner-1');
@@ -54,31 +52,32 @@ Route::get('/banner-3', function (){
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
     Route::post('register', 'registerSave')->name('register.save');
-  
+
     Route::get('login', 'login')->name('login');
     Route::post('login', 'loginAction')->name('login.action');
-  
+
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::prefix('admin')->middleware('role:admin')->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('menus', MenuController::class);
+    Route::resource('promos', PromoController::class);
+    Route::resource('stocks', StockController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('orders', OrderController::class);
+
+    Route::prefix('admin')->group(function () {
         Route::get('dashboard', function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
-        
     });
+});
 
-    Route::prefix('customer')->middleware('role:customer')->group(function () {
+Route::middleware('auth')->group(function () {
+    Route::prefix('customer')->group(function () {
         Route::get('dashboard', function () {
             return view('customer.dashboard');
         })->name('customer.dashboard');
     });
+        
 });
-
-Route::resource('menus', MenuController::class);
-Route::resource('promos', PromoController::class);
-Route::resource('stocks', StockController::class);
-Route::resource('users', UserController::class);
-// Index
-Route::resource('orders', OrderController::class);

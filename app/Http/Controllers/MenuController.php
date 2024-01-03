@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // app/Http/Controllers/MenuController.php
 
 use App\Models\Menu;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,6 +15,7 @@ class MenuController extends Controller
     {
         $menus = Menu::simplePaginate(5);
         return view('menus.index', compact('menus'));
+
     }
 
     public function create()
@@ -34,7 +36,7 @@ class MenuController extends Controller
         $menu->nama_menu = $request->input('nama_menu');
         $menu->kategori_menu = $request->input('kategori_menu');
 
-        // Upload gambar_menu
+
         $gambar_menu = $request->file('gambar_menu');
         $gambar_menu_path = $gambar_menu->storeAs('images/menu', $gambar_menu->getClientOriginalName(), 'public');
         $menu->gambar_menu = $gambar_menu_path;
@@ -70,10 +72,10 @@ class MenuController extends Controller
         $menu->kategori_menu = $request->input('kategori_menu');
 
         if ($request->hasFile('gambar_menu')) {
-            // Hapus gambar lama jika ada
+
             Storage::disk('public')->delete($menu->gambar_menu);
 
-            // Upload gambar_menu yang baru
+
             $gambar_menu = $request->file('gambar_menu');
             $gambar_menu_path = $gambar_menu->storeAs('images/menu', $gambar_menu->getClientOriginalName(), 'public');
             $menu->gambar_menu = $gambar_menu_path;
@@ -89,11 +91,25 @@ class MenuController extends Controller
     {
         $menu = Menu::find($id);
 
-        // Hapus gambar dari storage
+ 
         Storage::disk('public')->delete($menu->gambar_menu);
 
         $menu->delete();
 
         return redirect()->route('menus.index')->with('success', 'Menu berhasil dihapus');
+    }
+    public function landingPage()
+    {
+        $menus = Menu::all();
+        $stocks = Stock::all();
+
+        return view('landing_page.menu', compact('menus','stocks'));
+    }
+    public function landingPageCustomer()
+    {
+        $menus = Menu::all();
+        $stocks = Stock::all();
+
+        return view('customer.menu', compact('menus','stocks'));
     }
 }

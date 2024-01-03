@@ -29,7 +29,8 @@ class PromoController extends Controller
         ]);
 
         $gambar_promo = $request->file('gambar_promo');
-        $gambar_path = $gambar_promo->store('images/promo', 'public');
+        $nama_file = $gambar_promo->getClientOriginalName();
+        $gambar_path = $gambar_promo->storeAs('images/promo', $nama_file, 'public');
 
         Promo::create([
             'nama_promo' => $request->input('nama_promo'),
@@ -59,7 +60,8 @@ class PromoController extends Controller
 
         if ($request->hasFile('gambar_promo')) {
             $gambar_promo = $request->file('gambar_promo');
-            $gambar_path = $gambar_promo->store('images/promo', 'public');
+            $nama_file = time() . '_' . $gambar_promo->getClientOriginalName();
+            $gambar_path = $gambar_promo->storeAs('images/promo', $nama_file, 'public');
             $promo->update(['gambar_promo' => $gambar_path]);
         }
 
@@ -79,4 +81,19 @@ class PromoController extends Controller
 
         return redirect()->route('promos.index')->with('success', 'Promo berhasil dihapus');
     }
+
+    public function landingPage()
+    {
+        $promos = Promo::all();
+
+        return view('landing_page.promo', compact('promos'));
+    }
+
+    public function landingPageCustomer()
+    {
+        $promos = Promo::all();
+
+        return view('customer.promo', compact('promos'));
+    }
+
 }

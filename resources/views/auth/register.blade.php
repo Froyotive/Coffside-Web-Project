@@ -2,95 +2,119 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SB Admin 2 - Register</title>
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('admin_assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Login Coffside</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('admin_assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css" />
 </head>
 
-<body class="bg-gradient">
-    <div class="container">
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block"
-                        style="background: url('{{ asset('images/login-1.png') }}'); background-position: center; background-size: cover;">
-                    </div>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ecede8;">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logo-1.png') }}" alt="Coffside Logo" width="80" height="40">
 
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                            </div>
-                            <form action="{{ route('register.save') }}" method="POST" class="user">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ url('/') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('promo') }}">Promo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('menu') }}">Menu</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="{{ url('login') }}">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+        <div class="container">
+            <div class="card login-card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="images/login.png" alt="login" class="login-card-img" />
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h2 class="judul-login">Register your account</h2>
+                            <form action="{{ route('register.save') }}" method="POST">
                                 @csrf
+                                <p>Nama</p>
                                 <div class="form-group">
-                                    <input name="name" type="text"
-                                        class="form-control form-control-user @error('name')is-invalid @enderror"
-                                        id="exampleInputName" placeholder="Name">
+                                    <label for="name" class="sr-only">Name</label>
+                                    <input type="text" name="name" id="exampleInputName"
+                                        class="form-control @error('name')is-invalid @enderror"
+                                        placeholder="Masukkan Nama Anda ...." />
                                     @error('name')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <p>Email</p>
                                 <div class="form-group">
-                                    <input name="email" type="email"
-                                        class="form-control form-control-user @error('email')is-invalid @enderror"
-                                        id="exampleInputEmail" placeholder="Email Address">
+                                    <label for="email" class="sr-only">Email</label>
+                                    <input type="email" name="email" id="exampleInputEmail"
+                                        class="form-control @error('email')is-invalid @enderror"
+                                        placeholder="Masukkan Email Anda ...." />
                                     @error('email')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input name="password" type="password"
-                                            class="form-control form-control-user @error('password')is-invalid @enderror"
-                                            id="exampleInputPassword" placeholder="Password">
-                                        @error('password')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input name="password_confirmation" type="password"
-                                            class="form-control form-control-user @error('password_confirmation')is-invalid @enderror"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
-                                        @error('password_confirmation')
-                                        <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <p>Password</p>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Password</label>
+                                    <input type="password" name="password" id="exampleInputPassword"
+                                        class="form-control @error('password')is-invalid @enderror"
+                                        placeholder="Masukkan Password Anda ...." />
+                                    @error('password')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">Register
-                                    Account</button>
+                                <p>Konfirmasi Password</p>
+                                <div class="form-group mb-4">
+                                    <label for="password" class="sr-only">Repeat Password</label>
+                                    <input type="password" name="password_confirmation" id="exampleRepeatPassword"
+                                        class="form-control @error('password_confirmation')is-invalid @enderror"
+                                        placeholder="Masukkan Ulang Password Anda ...." />
+                                    @error('password_confirmation')
+                                    <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <input name="register" id="register" class="btn btn-block login-btn mb-4" type="submit"
+                                    value="Register" />
                             </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('admin_assets/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('admin_assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('admin_assets/js/sb-admin-2.min.js') }}"></script>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap Admin Dashboard</title>
+    <title>Coffside Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('admin_assets2/css/style.css') }}" />
@@ -79,13 +79,13 @@
                 </div>
             </nav>
             <main class="content px-3 py-2">
-                <div class="container mt-5">
+                <div class="container mt-5 card card-body">
                     <div class="container mt-4">
                         <h2>Data Akun Customer</h2>
-                        <div class="mb-5 text-end">
+                        <div class="mb-5 text-end ">
                             <a href="{{ route('users.create') }}" class="btn btn-success mb-3">Tambah Akun Customer</a>
                         </div>
-                        <table class="table">
+                        <table class="table table-bordered ">
                             <thead>
                                 <tr>
                                     <th>No. Id</th>
@@ -95,10 +95,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $user)
+                                @foreach($users as $index => $user)
                                 @if($user->role === 'customer')
                                 <tr>
-                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>

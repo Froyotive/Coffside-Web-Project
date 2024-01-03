@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap Admin Dashboard</title>
+    <title>Coffside Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('admin_assets2/css/style.css') }}" />
@@ -80,7 +80,7 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="container mt-5">
+                    <div class="container mt-5 card card-body">
                         <h2>Data Pemesanan</h2>
                         @if (session('success'))
                         <div class="alert alert-success mt-3">
@@ -90,16 +90,16 @@
                         <div class="mb-5 text-end">
                             <a href="{{ route('orders.create') }}" class="btn btn-success">Tambah Data Pemesanan</a>
                         </div>
-                        <table class="table mt-4">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No</th>
                                     <th>Menu</th>
                                     <th>Promo</th>
-                                    <th>User</th>
-                                    <th>Quantity</th>
-                                    <th>Total Price</th>
-                                    <th>Actions</th>
+                                    <th>Nama Pemesan</th>
+                                    <th>Jumlah</th>
+                                    <th>Total Harga</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -127,6 +127,15 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-3">
+                            @if($orders->previousPageUrl())
+                            <a href="{{ $orders->previousPageUrl() }}" class="btn btn-primary">Previous</a>
+                            @endif
+
+                            @if($orders->nextPageUrl())
+                            <a href="{{ $orders->nextPageUrl() }}" class="btn btn-primary">Next</a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </main>

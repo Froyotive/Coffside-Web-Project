@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with(['menu', 'promo', 'user'])->paginate(5);
+        $orders = Order::simplePaginate(10);
         return view('orders.index', compact('orders'));
     }
 
@@ -39,9 +39,17 @@ class OrderController extends Controller
         $promo = Promo::find($request->input('promo_id'));
         $user = User::find($request->input('user_id'));
 
+
+        $stock = Stock::where('menu_id', $menu->id)->first();
+
+        if (!$stock || $stock->quantity < $request->input('quantity')) {
+
+            return redirect()->back()->with('error', 'Stock habis atau tidak mencukupi untuk pesanan ini');
+        }
+
         $order = new Order([
             'quantity' => $request->input('quantity'),
-            'total_price' => ($menu->harga_menu - ($promo ? $promo->nilai_potongan : 0)) * $request->input('quantity'),
+            'total_price' => (($menu->harga_menu * $request->input('quantity')) - ($menu->harga_menu * ($promo ? $promo->nilai_potongan : 0))),
         ]);
 
         $order->menu()->associate($menu);
@@ -49,20 +57,14 @@ class OrderController extends Controller
         $order->user()->associate($user);
         $order->save();
 
-        // Attempt to load the Stock model directly
-        $stock = Stock::where('menu_id', $menu->id)->first();
 
-        if ($stock) {
-            // Update stock
-            $stock->quantity -= $request->input('quantity');
-            $stock->save();
-        } else {
-            // Handle the case where the stock is not found
-            // You might need to create a stock entry or handle it according to your logic
-        }
+        $stock->quantity -= $request->input('quantity');
+        $stock->save();
 
         return redirect()->route('orders.index')->with('success', 'Order berhasil ditambahkan');
     }
+
+
 
     public function show(Order $order)
     {
@@ -81,33 +83,61 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $request->validate([
-            // ... your validation rules ...
+            'menu_id' => 'required|exists:menus,id',
+            'promo_id' => 'exists:promos,id',
+            'user_id' => 'required|exists:users,id',
+            'quantity' => 'required|integer|min:1',
         ]);
 
-        // Update the order details
-        $menu = $order->menu;
-        $promo = $order->promo;
+        $menu = Menu::find($request->input('menu_id'));
+        $promo = Promo::find($request->input('promo_id'));
+        $user = User::find($request->input('user_id'));
 
-        // Calculate the updated total price based on the new quantity
-        $updatedTotalPrice = ($menu->harga_menu - ($promo ? $promo->nilai_potongan : 0)) * $request->input('quantity');
+        $order->menu()->associate($menu);
+        $order->promo()->associate($promo);
+        $order->user()->associate($user);
 
-        // Update the order details
-        $order->update([
-            'menu_id' => $request->input('menu_id'),
-            'promo_id' => $request->input('promo_id'),
-            'user_id' => $request->input('user_id'),
-            'quantity' => $request->input('quantity'),
-            'total_price' => $updatedTotalPrice,
-        ]);
 
-        return redirect()->route('orders.index')->with('success', 'Order berhasil diperbarui');
+        $order->quantity = $request->input('quantity');
+        $order->total_price = (($menu->harga_menu * $request->input('quantity')) - ($menu->harga_menu * ($promo ? $promo->nilai_potongan : 0)));
+
+        $order->save();
+
+
+        $stock = Stock::where('menu_id', $menu->id)->first();
+
+        if ($stock) {
+
+            $stock->quantity -= $request->input('quantity');
+            $stock->save();
+        } else {
+            
+        }
+
+        return redirect()->route('orders.index')->with('success', 'Order berhasil diupdate');
     }
+
 
     public function destroy(Order $order)
     {
-        // Delete the order
+        
+        $menu = $order->menu;
+        $quantity = $order->quantity;
+
+        
+        $stock = Stock::where('menu_id', $menu->id)->first();
+
+        if ($stock) {
+            
+            $stock->quantity += $quantity;
+            $stock->save();
+        } else {
+            
+        }
+
+        
         $order->delete();
 
-        return redirect()->route('orders.index')->with('success', 'Order berhasil dihapus');
+        return redirect()->route('orders.index')->with('success', 'Order berhasil dihapus dan stok dikembalikan');
     }
 }

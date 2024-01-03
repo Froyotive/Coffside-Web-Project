@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi data input disini jika diperlukan
+
 
         User::create($request->all());
 
@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        // Validasi data input disini jika diperlukan
+
 
         $user->update($request->all());
 
