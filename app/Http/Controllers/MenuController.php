@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // app/Http/Controllers/MenuController.php
 
 use App\Models\Menu;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -96,5 +97,12 @@ class MenuController extends Controller
         $menu->delete();
 
         return redirect()->route('menus.index')->with('success', 'Menu berhasil dihapus');
+    }
+    public function landingPage()
+    {
+        $menus = Menu::all();
+        $stocks = Stock::all();
+
+        return view('landing_page.menu', compact('menus','stocks'));
     }
 }

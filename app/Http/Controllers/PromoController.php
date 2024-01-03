@@ -81,4 +81,12 @@ class PromoController extends Controller
 
         return redirect()->route('promos.index')->with('success', 'Promo berhasil dihapus');
     }
+
+    public function landingPage()
+    {
+        $promos = Promo::all();
+
+        return view('landing_page.promo', compact('promos'));
+    }
+
 }

@@ -72,138 +72,83 @@
     </section>
     <p class="text " style="background-color: #004A62" text-color=""> </p>
 
-    <!-- Menu -->
     <div class="container" id="coffee">
         <h2 class="promo-heading mt-4">Premium Taste</h2>
         <div class="row" style="margin-top: 30px;">
-            <div class="col-md-3 py-0 py-md-0">
-                <div class="card border-0">
-                    <img src="{{ asset('images/menu/saltedcaramellatte.png') }}" alt="">
-                    <div class="card-body">
-                        <h3 class="menu-coffee">Salted Caramel Latte</h3>
-                        <h5 class="menu-coffee">Rp 19.000 <span></span></h5>
-                        <!-- <h6 class="menu-coffee">Stock : 16</h6> -->
+            <div class="row" style="margin-top: 30px;">
+                @foreach($menus as $menu)
+                @if($menu->kategori_menu === 'Premium Taste')
+                <div class="col-md-3 py-0 py-md-0">
+                    <div class="card border-0">
+                        <img src="{{ asset($menu->gambar_menu) }}" alt="{{ $menu->nama_menu }}">
+                        <div class="card-body">
+                            <h3 class="menu-coffee">{{ $menu->nama_menu }}</h3>
+                            <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
+                                <span></span>
+                            </h5>
+                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 py-0 py-md-0">
-                <div class="card border-0">
-                    <img src="{{ asset('images/menu/veganlatte.png') }}" alt="">
-                    <div class="card-body">
-                        <h3 class="menu-coffee">Vegan Latte</h3>
-                        <h5 class="menu-coffee">Rp 17.000 <span></span></h5>
-                        <!-- <h6 class="menu-coffee">Stock : 9</h6> -->
-                    </div>
-                </div>
+                @endif
+                @endforeach
             </div>
             <h2 class="promo-heading mt-4">Coffee</h2>
             <div class="row" style="margin-top: 30px;">
+                @foreach($menus as $menu)
+                @if($menu->kategori_menu === 'Coffee')
                 <div class="col-md-3 py-0 py-md-0">
                     <div class="card border-0">
-                        <img src="{{ asset('images/menu/americano.png') }}" alt="">
+                        <img src="{{ asset($menu->gambar_menu) }}" alt="{{ $menu->nama_menu }}">
                         <div class="card-body">
-                            <h3 class="menu-coffee">Americano</h3>
-                            <h5 class="menu-coffee">Rp 9.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 13</h6> -->
+                            <h3 class="menu-coffee">{{ $menu->nama_menu }}</h3>
+                            <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
+                                <span></span>
+                            </h5>
+                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/aren-latte.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Aren Latte</h3>
-                            <h5 class="menu-coffee">Rp 9.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 12</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/caffelatte.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Caffe Latte</h3>
-                            <h5 class="menu-coffee">Rp 9.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 10</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/caramellatte.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Caramell Latte</h3>
-                            <h5 class="menu-coffee">Rp 13.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 6</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/butterscotch.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Butter Scotch</h3>
-                            <h5 class="menu-coffee">Rp 13.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 14</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/vanila-latte.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Vanilla Latte</h3>
-                            <h5 class="menu-coffee">Rp 13.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 12</h6> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/creamycoffee.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Creamy Coffee</h3>
-                            <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 11</h6> -->
-                        </div>
-                    </div>
-                </div>
+                @endif
+                @endforeach
             </div>
             <h2 class="promo-heading mt-4">Non-Coffee</h2>
             <div class="row" style="margin-top: 30px;">
+                @foreach($menus as $menu)
+                @if($menu->kategori_menu === 'Non-Coffee')
                 <div class="col-md-3 py-0 py-md-0">
                     <div class="card border-0">
-                        <img src="{{ asset('images/menu/oceanblue.png') }}" alt="">
+                        <img src="{{ asset($menu->gambar_menu) }}" alt="{{ $menu->nama_menu }}">
                         <div class="card-body">
-                            <h3 class="menu-coffee">Ocean Blue</h3>
-                            <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 11</h6> -->
+                            <h3 class="menu-coffee">{{ $menu->nama_menu }}</h3>
+                            <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
+                                <span></span>
+                            </h5>
+                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 py-0 py-md-0">
-                    <div class="card border-0">
-                        <img src="{{ asset('images/menu/milkysquash.png') }}" alt="">
-                        <div class="card-body">
-                            <h3 class="menu-coffee">Milky Squash</h3>
-                            <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 5</h6> -->
-                        </div>
-                    </div>
-                </div>
+                @endif
+                @endforeach
             </div>
             <h2 class="promo-heading mt-4">Food</h2>
             <div class="row" style="margin-top: 30px;">
+                @foreach($menus as $menu)
+                @if($menu->kategori_menu === 'Food')
                 <div class="col-md-3 py-0 py-md-0">
                     <div class="card border-0">
-                        <img src="{{ asset('images/menu/icecreamsandwich.png') }}" alt="">
+                        <img src="{{ asset($menu->gambar_menu) }}" alt="{{ $menu->nama_menu }}">
                         <div class="card-body">
-                            <h3 class="menu-coffee">Ice Cream Sandwich</h3>
-                            <h5 class="menu-coffee">Rp 15.000 <span></span></h5>
-                            <!-- <h6 class="menu-coffee">Stock : 2</h6> -->
+                            <h3 class="menu-coffee">{{ $menu->nama_menu }}</h3>
+                            <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
+                                <span></span>
+                            </h5>
+                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                         </div>
                     </div>
                 </div>
+                @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -244,3 +189,9 @@
 
 
 </html>
+@php
+function getStockQuantity($stocks, $menuId) {
+$stock = $stocks->where('menu_id', $menuId)->first();
+return $stock ? $stock->quantity : 0;
+}
+@endphp

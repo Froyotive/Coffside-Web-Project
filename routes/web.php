@@ -19,13 +19,12 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('landing_page.home');
 });
 
+Route::get('/menu', [MenuController::class, 'landingPage']); 
+Route::get('/promo', [PromoController::class, 'landingPage']); 
 
-Route::get('/menu', function () {
-    return view('menu');
-});
 
 Route::get('/login', function () {
     return view('login');
@@ -35,9 +34,6 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/promo', function () {
-    return view('promo');
-});
 
 Route::get('/banner-1', function (){
     return view('banner.banner-1');
@@ -80,5 +76,6 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard', function () {
             return view('customer.dashboard');
         })->name('customer.dashboard');
+        
     });
 });
