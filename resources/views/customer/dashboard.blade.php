@@ -40,7 +40,12 @@
                         <a class="nav-link" href="{{ url('menu_customer') }}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Keranjang( )</a>
+                        <a class="nav-link" href="{{ route('cart.index') }}">
+                            Keranjang
+                            <span>
+                                {{ Cart::count() }}
+                            </span>
+                        </a>
                     </li>
                     @auth
                     <li class="nav-item dropdown">
@@ -49,7 +54,7 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="#">Data Pemesanan</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/customer/orders')}}">Data Pemesanan</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                         </ul>
                     </li>

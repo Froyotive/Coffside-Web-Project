@@ -8,6 +8,8 @@ use App\Http\Controllers\PromoController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CustomerController;
 /*  
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +30,8 @@ Route::get('/promo', [PromoController::class, 'landingPage']);
 Route::get('/menu_customer', [MenuController::class, 'landingPageCustomer']); 
 Route::post('/add_to_cart', [MenuController::class, 'addToCart']); 
 Route::get('/promo_customer', [PromoController::class, 'landingPageCustomer']); 
+
+
 
 
 Route::get('/login', function () {
@@ -88,3 +92,6 @@ Route::post('/add_to_cart', [MenuController::class, 'addToCart'])->name('addToCa
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/clear-cart', [CartController::class, 'clearCart'])->name('clear.cart');
 Route::post('/apply-promo', [CartController::class, 'applyPromo'])->name('applyPromo');
+Route::post('/cart/store-order', [PromoController::class, 'storeOrder'])->name('orders.create');
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/customer/orders', [CustomerController::class, 'orders'])->name('customer.orders');

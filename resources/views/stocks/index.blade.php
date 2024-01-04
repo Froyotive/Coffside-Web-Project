@@ -83,7 +83,7 @@
                     <div class="container mt-4 card card-body">
                         <h2>Daftar Stocks</h2>
                         <div class="mb-5 text-end">
-                            <a href="{{ route('stocks.create') }}" class="btn btn-success">Tambah Stock</a>
+                            <a href="{{ route('stocks.create') }}" class="btn btn-success">Tambah Stock Menu Baru</a>
                         </div>
 
                         <table class="table table-bordered">
@@ -109,8 +109,8 @@
                                     </td>
                                     <td>{{ $stock->quantity }}</td>
                                     <td>
-                                        <a href="{{ route('stocks.edit', $stock->id) }}"
-                                            class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('stocks.edit', $stock->id) }}" class="btn btn-warning">Tambah
+                                            Stock</a>
                                         <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST"
                                             style="display:inline"
                                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus stok ini?');">

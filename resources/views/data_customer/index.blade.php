@@ -89,7 +89,7 @@
                         <table class="table table-bordered ">
                             <thead>
                                 <tr>
-                                    <th>No. Id</th>
+                                    <th>No</th>
                                     <th>Nama Customer</th>
                                     <th>Email Customer</th>
                                     <th>Aksi</th>

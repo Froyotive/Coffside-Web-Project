@@ -87,9 +87,6 @@
                             {{ session('success') }}
                         </div>
                         @endif
-                        <div class="mb-5 text-end">
-                            <a href="{{ route('orders.create') }}" class="btn btn-success">Tambah Data Pemesanan</a>
-                        </div>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -99,6 +96,7 @@
                                     <th>Nama Pemesan</th>
                                     <th>Jumlah</th>
                                     <th>Total Harga</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -107,10 +105,11 @@
                                 <tr>
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->menu->nama_menu }}</td>
-                                    <td>{{ $order->promo ? $order->promo->nama_promo : 'N/A' }}</td>
+                                    <td>{{ $order->promo ? $order->promo->nama_promo : 'No Promo' }}</td>
                                     <td>{{ $order->user->name }}</td>
                                     <td>{{ $order->quantity }}</td>
                                     <td>{{ 'Rp ' . number_format($order->total_price, 0, ',', '.') }}</td>
+                                    <td>{{ $order->status }}</td>
                                     <td>
                                         <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info">Show</a>
                                         <a href="{{ route('orders.edit', $order->id) }}"

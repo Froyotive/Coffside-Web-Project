@@ -8,6 +8,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Promo; 
 use Illuminate\Support\Facades\Session;
 
+
 class CartController extends Controller
 {
     public function index()
@@ -22,6 +23,8 @@ class CartController extends Controller
 
         return redirect()->route('cart.index')->with('success', 'Cart cleared successfully');
     }
+
+    
     
 
 }

@@ -56,7 +56,7 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="#">Data Pemesanan</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/customer/orders')}}">Data Pemesanan</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                         </ul>
                     </li>
@@ -119,7 +119,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                                 <div class="text-end">
-                                    <form action="#" method="POST">
+                                    <form action="{{ route('addToCart') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="menu_id" value="{{ $menu->id }}">
                                         <button type="submit" class="btn btn-primary">Beli</button>
@@ -147,11 +147,13 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                                 <div class="text-end">
-                                    <form action="#" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="menu_id" value="{{ $menu->id }}">
-                                        <button type="submit" class="btn btn-primary">Beli</button>
-                                    </form>
+                                    <div class="text-end">
+                                        <form action="{{ route('addToCart') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                                            <button type="submit" class="btn btn-primary">Beli</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +176,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                                     <div class="text-end">
-                                        <form action="#" method="POST">
+                                        <form action="{{ route('addToCart') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="menu_id" value="{{ $menu->id }}">
                                             <button type="submit" class="btn btn-primary">Beli</button>
