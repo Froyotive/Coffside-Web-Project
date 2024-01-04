@@ -46,9 +46,9 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{url('users')}}" class="sidebar-link">
+                        <a href="{{url('data_customer')}}" class="sidebar-link">
                             <i class="fa-solid fa-user pe-2"></i>
-                            Users
+                            Data Akun Customer
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -83,28 +83,29 @@
                     <div class="container mt-4">
                         <h2>Data Akun Customer</h2>
                         <div class="mb-5 text-end ">
-                            <a href="{{ route('users.create') }}" class="btn btn-success mb-3">Tambah Akun Customer</a>
+                            <a href="{{ route('data_customer.create') }}" class="btn btn-success mb-3">Tambah Akun
+                                Customer</a>
                         </div>
                         <table class="table table-bordered ">
                             <thead>
                                 <tr>
-                                    <th>No. Id</th>
+                                    <th>No</th>
                                     <th>Nama Customer</th>
                                     <th>Email Customer</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $index => $user)
+                                @foreach($data_customer as $index => $user)
                                 @if($user->role === 'customer')
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <a href="{{ route('users.edit', $user->id) }}"
+                                        <a href="{{ route('data_customer.edit', $user->id) }}"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                        <form action="{{ route('data_customer.destroy', $user->id) }}" method="POST"
                                             style="display:inline">
                                             @csrf
                                             @method('DELETE')

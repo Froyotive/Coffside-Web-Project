@@ -15,4 +15,9 @@ class Menu extends Model
     {
         return $this->belongsTo(Stock::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -46,9 +46,9 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{url('users')}}" class="sidebar-link">
+                        <a href="{{url('data_customer')}}" class="sidebar-link">
                             <i class="fa-solid fa-user pe-2"></i>
-                            Users
+                            Data Akun Customer
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -81,25 +81,33 @@
             <main class="content px-3 py-2">
                 <div class="container mt-5">
                     <div class="container mt-5 card card-body">
-                        <h1>Edit User</h1>
+                        <h1>Create User</h1>
 
-                        <form action="{{ route('users.update', $user->id) }}" method="POST">
+                        <form action="{{ route('data_customer.store') }}" method="POST">
                             @csrf
-                            @method('PUT')
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name:</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}"
-                                    required>
+                                <input type="text" class="form-control" id="name" name="name" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    value="{{ $user->email }}" required>
+                                <input type="email" class="form-control" id="email" name="email" required>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
 
-                            <button type="submit" class="btn btn-primary">Update User</button>
+                            <div class="mb-3">
+                                <label for="role" class="form-label">Role:</label>
+                                <select class="form-select" id="role" name="role">
+                                    <option value="customer">Customer</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Create User</button>
                         </form>
                     </div>
                 </div>

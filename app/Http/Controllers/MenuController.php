@@ -8,6 +8,7 @@ use App\Models\Menu;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class MenuController extends Controller
 {
@@ -111,5 +112,20 @@ class MenuController extends Controller
         $stocks = Stock::all();
 
         return view('customer.menu', compact('menus','stocks'));
+    }
+    
+    public function addToCart(Request $request)
+    {
+        $menu = Menu::find($request->menu_id);
+    
+        Cart::add([
+            'id' => $menu->id,
+            'name' => $menu->nama_menu,
+            'qty' => 1,
+            'price' => $menu->harga_menu,
+            'options' => ['image' => $menu->gambar_menu],
+        ]);
+    
+        return redirect()->back()->with('success', 'Item added to cart');
     }
 }

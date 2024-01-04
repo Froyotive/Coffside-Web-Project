@@ -1,5 +1,3 @@
-<!-- resources/views/orders/index.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,50 +63,74 @@
             </div>
         </div>
     </nav>
-    <main class="content px-3 py-2">
-        <div class="container-fluid">
-            <div class="container mt-5 card card-body">
-                <h1>Order History</h1>
 
-                @if(count($orders) > 0)
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Menu</th>
-                            <th>Gambar Menu</th>
-                            <th>Quantity</th>
-                            <th>Total Price</th>
-                            <th>Status</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($orders as $order)
-                        <tr>
-                            <td>{{ $order->id }}</td>
-                            <td>{{ $order->menu->nama_menu }}</td>
-                            <td>
-                                <img src="{{ asset($order->menu->gambar_menu) }}" alt="Menu Image" width="50"
-                                    height="50">
-                            </td>
-                            <td>{{ $order->quantity }}</td>
-                            <td>{{ number_format($order->total_price, 2, '.', ',') }}</td>
-                            <td>{{ $order->status }}</td>
-
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                @else
-                <p>No order history available.</p>
-                @endif
-            </div>
-        </div>
-    </main>
     <div class="container mt-5">
+        <h1>Shopping Cart</h1>
 
+        @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if(count($cartItems) > 0)
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Promo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($cartItems as $item)
+                <tr>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ number_format($item->price, 2, '.', ',') }}</td>
+                    <td>{{ $item->qty }}</td>
+                    <td>{{ number_format($item->price * $item->qty, 2, '.', ',') }}</td>
+                    <td>
+                        <div class="input-group">
+                            <select name="promo_id" class="form-control col-1">
+                                <option value="">No Promo</option>
+                                @foreach($promos as $promo)
+                                <option value="{{ $promo->id }}">{{ $promo->nama_promo }}</option>
+                                @endforeach
+                            </select>
+                            <button type="button" id="usePromoButton" class="btn btn-primary">Gunakan Promo</button>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <form action="{{ route('orders.create') }}" method="post" id="orderForm">
+            @csrf
+            <input type="hidden" name="promo_id" id="selectedPromoId" value="">
+            <button type="submit" class="btn btn-primary">Pay Now</button>
+        </form>
+
+        @else
+        <p>Your shopping cart is empty.</p>
+        @endif
     </div>
+
+    <script>
+    document.getElementById('usePromoButton').addEventListener('click', function() {
+        var promoSelect = document.querySelector('select[name="promo_id"]');
+        var selectedPromoId = promoSelect.value;
+
+
+        document.getElementById('selectedPromoId').value = selectedPromoId;
+
+
+        alert('Berhasil Menggunakan Promo');
+    });
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-9aR5l+95HXYrlJICRlxSz/3YUKx4l/6yI0jIj6U2b+JhxEzQ/SFIlXffFm2aFNL" crossorigin="anonymous">
@@ -116,7 +138,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-XVZt++rTn3Bv21t0RxL4DXL4z5UtdiJrI95LKXqFh5Y32MPY1az7kFgP2RbFAQ5W" crossorigin="anonymous">
     </script>
-
 </body>
 
 </html>
