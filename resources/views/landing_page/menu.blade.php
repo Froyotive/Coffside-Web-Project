@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ url('/') }}">Home</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('customer.dashboard') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('promo') }}">Promo</a>
@@ -50,26 +50,6 @@
     </nav>
 
     <!-- Search Bar -->
-    <section class="header-main border-bottom bg-white">
-        <div class="container-fluid">
-            <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    <div class="d-flex form-inputs">
-                        <input class="form-control" type="text" placeholder="Search any product...">
-                        <i class="bx bx-search"></i>
-                    </div>
-                </div>
-
-                <div class="col-md-2">
-                    <div class="d-flex d-none d-md-flex flex-row align-items-center">
-                        <span class="shop-bag"><i class='bx bxs-shopping-bag'></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <p class="text " style="background-color: #004A62" text-color=""> </p>
 
     <div class="container" id="coffee">

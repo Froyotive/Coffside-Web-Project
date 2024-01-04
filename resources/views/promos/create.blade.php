@@ -46,9 +46,9 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{url('users')}}" class="sidebar-link">
+                        <a href="{{url('data_customer')}}" class="sidebar-link">
                             <i class="fa-solid fa-user pe-2"></i>
-                            Users
+                            Data Akun Customer
                         </a>
                     </li>
                     <li class="sidebar-item">

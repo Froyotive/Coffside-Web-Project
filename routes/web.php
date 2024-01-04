@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataCustomerController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\StockController;
@@ -25,7 +26,8 @@ Route::get('/', function () {
 Route::get('/menu', [MenuController::class, 'landingPage']); 
 Route::get('/promo', [PromoController::class, 'landingPage']);
 Route::get('/menu_customer', [MenuController::class, 'landingPageCustomer']); 
-Route::get('/promo_customer', [PromoController::class, 'landingPageCustomer']);  
+Route::post('/add_to_cart', [MenuController::class, 'addToCart']); 
+Route::get('/promo_customer', [PromoController::class, 'landingPageCustomer']); 
 
 
 Route::get('/login', function () {
@@ -63,7 +65,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('menus', MenuController::class);
     Route::resource('promos', PromoController::class);
     Route::resource('stocks', StockController::class);
-    Route::resource('users', UserController::class);
+    Route::resource('data_customer', DataCustomerController::class)->parameters([
+        'data_customer' => 'user'
+    ]);
     Route::resource('orders', OrderController::class);
 
     Route::prefix('admin')->group(function () {
@@ -79,5 +83,4 @@ Route::middleware('auth')->group(function () {
             return view('customer.dashboard');
         })->name('customer.dashboard');
     });
-        
 });

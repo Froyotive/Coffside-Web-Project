@@ -33,20 +33,27 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                        <a class="nav-link " aria-current="page" href="{{ route('customer.dashboard') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('promo_customer') }}">Promo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('menu_customer') }}">Menu</a>
+                        <a class="nav-link active" href="{{ url('menu_customer') }}">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Keranjang( )</a>
                     </li>
                     @auth
-                    <li class="nav-item">
-                        <span class="nav-link">{{ Auth::user()->name }}</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#">Data Pemesanan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                        </ul>
                     </li>
                     @endauth
                 </ul>
@@ -57,22 +64,7 @@
     <!-- Search Bar -->
     <section class="header-main border-bottom bg-white">
         <div class="container-fluid">
-            <div class="row p-2 pt-3 pb-3 d-flex align-items-center">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8">
-                    <div class="d-flex form-inputs">
-                        <input class="form-control" type="text" placeholder="Search any product...">
-                        <i class="bx bx-search"></i>
-                    </div>
-                </div>
 
-                <div class="col-md-2">
-                    <div class="d-flex d-none d-md-flex flex-row align-items-center">
-                        <span class="shop-bag"><i class='bx bxs-shopping-bag'></i></span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <p class="text " style="background-color: #004A62" text-color=""> </p>
@@ -91,7 +83,16 @@
                             <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
                                 <span></span>
                             </h5>
-                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                                <div class="text-end">
+                                    <form action="/add_to_cart" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                                        <button type="submit" class="btn btn-primary">Beli</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -110,7 +111,16 @@
                             <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
                                 <span></span>
                             </h5>
-                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                                <div class="text-end">
+                                    <form action="#" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                                        <button type="submit" class="btn btn-primary">Beli</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -129,7 +139,16 @@
                             <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
                                 <span></span>
                             </h5>
-                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                                <div class="text-end">
+                                    <form action="#" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                                        <button type="submit" class="btn btn-primary">Beli</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -147,8 +166,16 @@
                             <h3 class="menu-coffee">{{ $menu->nama_menu }}</h3>
                             <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
                                 <span></span>
-                            </h5>
-                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
+                                    <div class="text-end">
+                                        <form action="#" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                                            <button type="submit" class="btn btn-primary">Beli</button>
+                                        </form>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
