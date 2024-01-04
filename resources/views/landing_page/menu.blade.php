@@ -66,7 +66,6 @@
                             <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
                                 <span></span>
                             </h5>
-                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -85,7 +84,6 @@
                             <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
                                 <span></span>
                             </h5>
-                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -104,7 +102,6 @@
                             <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
                                 <span></span>
                             </h5>
-                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -123,7 +120,6 @@
                             <h5 class="menu-coffee">{{ 'Rp ' . number_format($menu->harga_menu, 0, ',', '.') }}
                                 <span></span>
                             </h5>
-                            <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -169,9 +165,3 @@
 
 
 </html>
-@php
-function getStockQuantity($stocks, $menuId) {
-$stock = $stocks->where('menu_id', $menuId)->first();
-return $stock ? $stock->quantity : 0;
-}
-@endphp

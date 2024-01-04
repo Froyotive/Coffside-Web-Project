@@ -42,7 +42,12 @@
                         <a class="nav-link active" href="{{ url('menu_customer') }}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Keranjang( )</a>
+                        <a class="nav-link" href="{{ route('cart.index') }}">
+                            Keranjang
+                            <span>
+                                {{ Cart::count() }}
+                            </span>
+                        </a>
                     </li>
                     @auth
                     <li class="nav-item dropdown">
@@ -86,7 +91,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <h5 class="menu-coffee">Stock: {{ getStockQuantity($stocks, $menu->id) }}</h5>
                                 <div class="text-end">
-                                    <form action="/add_to_cart" method="POST">
+                                    <form action="{{ route('addToCart') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="menu_id" value="{{ $menu->id }}">
                                         <button type="submit" class="btn btn-primary">Beli</button>

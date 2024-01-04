@@ -6,7 +6,7 @@ use App\Http\Controllers\DataCustomerController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\StockController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 /*  
 |--------------------------------------------------------------------------
@@ -84,3 +84,7 @@ Route::middleware('auth')->group(function () {
         })->name('customer.dashboard');
     });
 });
+Route::post('/add_to_cart', [MenuController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/clear-cart', [CartController::class, 'clearCart'])->name('clear.cart');
+Route::post('/apply-promo', [CartController::class, 'applyPromo'])->name('applyPromo');

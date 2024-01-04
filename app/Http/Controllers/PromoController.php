@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Promo;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class PromoController extends Controller
 {
@@ -95,5 +96,8 @@ class PromoController extends Controller
 
         return view('customer.promo', compact('promos'));
     }
+    
+    
+
 
 }
