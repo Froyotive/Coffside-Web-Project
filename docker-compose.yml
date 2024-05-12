@@ -1,0 +1,26 @@
+version: "3"
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8000:8000"
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - db
+        env_file:
+            - .env
+    db:
+        image: mysql:latest
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: coffside
+            MYSQL_USER: root
+            MYSQL_ROOT_PASSWORD: admin123
+        volumes:
+            - dbdata:/var/lib/mysql
+volumes:
+    dbdata:
